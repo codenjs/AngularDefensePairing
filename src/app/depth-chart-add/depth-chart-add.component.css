@@ -1,0 +1,14 @@
+.depth-chart-add-container {
+    white-space: nowrap;
+}
+
+.depth-chart-add-input {
+    width: 175px;
+}
+
+.depth-chart-add-button {
+    color: white;
+    background: #3333ff;
+    border: 1px solid #3333ff;
+    margin-left: 5px;
+}

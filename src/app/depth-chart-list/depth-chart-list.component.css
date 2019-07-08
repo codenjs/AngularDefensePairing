@@ -1,0 +1,17 @@
+.depth-chart-container {
+    width: 250px;
+}
+
+.depth-chart-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.depth-chart-list-item {
+    background: #eeeeee;
+}
+
+.depth-chart-list-item:not(:first-child) {
+    margin-top: 3px;
+}
