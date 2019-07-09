@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-depth-chart-add',
@@ -8,6 +8,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class DepthChartAddComponent implements OnInit {
 
   newName: string;
+  @ViewChild('newNameInput', {static: false}) newNameElement: ElementRef;
   @Output() nameSaved = new EventEmitter<string>();
 
   constructor() { }
@@ -17,5 +18,7 @@ export class DepthChartAddComponent implements OnInit {
 
   save(): void {
     this.nameSaved.emit(this.newName);
+    this.newName = '';
+    this.newNameElement.nativeElement.focus();
   }
 }
