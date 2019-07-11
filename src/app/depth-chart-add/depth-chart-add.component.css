@@ -12,3 +12,7 @@
     border: 1px solid #3333ff;
     margin-left: 5px;
 }
+
+.validation-alert {
+    color: red;
+}
