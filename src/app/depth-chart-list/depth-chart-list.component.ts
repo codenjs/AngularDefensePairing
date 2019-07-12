@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DepthChartListItem } from '../depth-chart-list-item';
+import { DepthChartService } from '../depth-chart.service';
 
 @Component({
   selector: 'app-depth-chart-list',
@@ -9,21 +10,10 @@ import { DepthChartListItem } from '../depth-chart-list-item';
 export class DepthChartListComponent implements OnInit {
   items: DepthChartListItem[];
 
-  constructor() { }
-
-  ngOnInit() {
-    this.items = [
-      { name: 'Claude' },
-      { name: 'John' },
-      { name: 'Jake' },
-      { name: 'Deckard' },
-      { name: 'Logan' },
-      { name: 'Braeden' }
-    ]
+  constructor(private depthChartService: DepthChartService) {
+    this.items = this.depthChartService.getPlayers();
   }
 
-  onNameSaved(newName: string) {
-    this.items.push({ name: newName });
+  ngOnInit(): void {
   }
-
 }
