@@ -2,8 +2,8 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { DepthChartListComponent } from './depth-chart-list/depth-chart-list.component';
-import { DepthChartAddComponent } from './depth-chart-add/depth-chart-add.component';
+import { DepthChartListComponent } from './depth-chart/depth-chart-list/depth-chart-list.component';
+import { DepthChartAddComponent } from './depth-chart/depth-chart-add/depth-chart-add.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
