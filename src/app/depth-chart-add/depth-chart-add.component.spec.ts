@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DepthChartAddComponent } from './depth-chart-add.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('DepthChartAddComponent', () => {
   let component: DepthChartAddComponent;
@@ -8,7 +9,8 @@ describe('DepthChartAddComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DepthChartAddComponent ]
+      declarations: [ DepthChartAddComponent ],
+      imports: [ ReactiveFormsModule ]
     })
     .compileComponents();
   }));
