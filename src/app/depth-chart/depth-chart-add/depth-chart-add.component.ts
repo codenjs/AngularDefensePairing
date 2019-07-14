@@ -29,8 +29,9 @@ export class DepthChartAddComponent implements OnInit {
 
   duplicateNameValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
+      const inputName = control.value.trim();
       return this.depthChartService.getPlayers()
-        .find(i => i.name === control.value.trim()) ? {duplicateName: {value: control.value + ' already exists'}} : null;
+        .find(i => i.name === inputName) ? {duplicateName: {value: inputName + ' already exists'}} : null;
     };
   }
 
