@@ -55,3 +55,125 @@ describe('DepthChartAddComponent duplicateNameValidator', () => {
     expect(result).toBeNull();
   });
 });
+
+class Page {
+  // getter properties wait to query the DOM until called.
+  get nameInput() { return this.query<HTMLInputElement>('input'); }
+  get addButton() { return this.query<HTMLButtonElement>('button'); }
+
+  get errorMessageElement() { return this.query<HTMLElement>('.validation-alert'); }
+  get errorMessage() { return this.errorMessageElement.textContent.trim(); }
+  get errorMessageVisible() { return this.errorMessageElement; }
+
+  constructor(private fixture: ComponentFixture<DepthChartAddComponent>) {
+  }
+
+  setName(input: string): void {
+    const nameInput = this.nameInput;
+    nameInput.value = input;
+    nameInput.dispatchEvent(new Event('input'));
+    this.fixture.detectChanges();
+  }
+
+  clickAdd(): void {
+    this.addButton.click();
+    this.fixture.detectChanges();
+  }
+
+  //// query helpers ////
+  private query<T>(selector: string): T {
+    return this.fixture.nativeElement.querySelector(selector);
+  }
+}
+
+describe('DepthChartAddComponent onSubmit', () => {
+  let component: DepthChartAddComponent;
+  let fixture: ComponentFixture<DepthChartAddComponent>;
+  let page: Page;
+  let spyDepthChartService: jasmine.SpyObj<DepthChartService>;
+
+  beforeEach(async(() => {
+    const testPlayers = [
+      { name: 'Name1' },
+      { name: 'Name2' }
+    ];
+    spyDepthChartService = jasmine.createSpyObj('DepthChartService', ['getPlayers', 'addPlayer']);
+    spyDepthChartService.getPlayers.and.returnValue(testPlayers);
+
+    TestBed.configureTestingModule({
+      imports: [ DepthChartModule ],
+      providers: [ { provide: DepthChartService, useValue: spyDepthChartService } ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DepthChartAddComponent);
+    component = fixture.componentInstance;
+    page = new Page(fixture);
+    fixture.detectChanges();
+  });
+
+  const assertNameWasAdded = (name: string) => {
+    expect(page.nameInput.value).toBe('');
+    expect(spyDepthChartService.addPlayer).toHaveBeenCalledTimes(1);
+    expect(spyDepthChartService.addPlayer).toHaveBeenCalledWith(name);
+    expect(page.errorMessageVisible).toBeFalsy();
+  };
+
+  const assertValidationError = (name: string) => {
+    expect(page.nameInput.value).toBe(name);
+    expect(spyDepthChartService.addPlayer).not.toHaveBeenCalled();
+    expect(page.errorMessage).toBe('Name1 already exists');
+  };
+
+  it('should add valid name to depth chart', () => {
+    const testName = 'Name3';
+    page.setName(testName);
+    page.clickAdd();
+
+    assertNameWasAdded(testName);
+  });
+
+  it('should add trimmed name to depth chart when name has whitespace', () => {
+    const testName = ' Name3 ';
+    page.setName(testName);
+    page.clickAdd();
+
+    assertNameWasAdded(testName.trim());
+  });
+
+  it('should show an error message when name already exists', () => {
+    const testName = 'Name1';
+    page.setName(testName);
+    page.clickAdd();
+
+    assertValidationError(testName);
+  });
+
+  it('should show an error message when name has whitespace but trimmed name already exists', () => {
+    const testName = ' Name1 ';
+    page.setName(testName);
+    page.clickAdd();
+
+    assertValidationError(testName);
+  });
+
+  it('should not do anything when name is empty', () => {
+    const testName = '';
+    page.setName(testName);
+    page.clickAdd();
+
+    expect(page.nameInput.value).toBe(testName);
+    expect(spyDepthChartService.addPlayer).not.toHaveBeenCalled();
+  });
+
+  it('should not do anything when name is whitespace', () => {
+    const testName = ' ';
+    page.setName(testName);
+    page.clickAdd();
+
+    expect(page.nameInput.value).toBe(testName);
+    expect(spyDepthChartService.addPlayer).not.toHaveBeenCalled();
+  });
+});
