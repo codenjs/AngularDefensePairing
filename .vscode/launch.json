@@ -9,7 +9,8 @@
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "port": 4040 // default port 9222 is in use?
         }
     ]
 }
