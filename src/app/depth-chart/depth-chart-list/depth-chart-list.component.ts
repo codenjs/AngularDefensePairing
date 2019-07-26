@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DepthChartListItem } from '../depth-chart-list-item';
-import { DepthChartService } from '../depth-chart.service';
 
 @Component({
   selector: 'app-depth-chart-list',
@@ -8,10 +7,9 @@ import { DepthChartService } from '../depth-chart.service';
   styleUrls: ['./depth-chart-list.component.css']
 })
 export class DepthChartListComponent implements OnInit {
-  items: DepthChartListItem[];
+  @Input() items: DepthChartListItem[];
 
-  constructor(private depthChartService: DepthChartService) {
-    this.items = this.depthChartService.getPlayers();
+  constructor() {
   }
 
   ngOnInit(): void {

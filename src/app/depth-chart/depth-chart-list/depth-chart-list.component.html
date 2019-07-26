@@ -1,9 +1,5 @@
-<div class="depth-chart-container">
-    <h3>Depth Chart</h3>
-    <ul class="depth-chart-list">
-        <li *ngFor="let item of items" class="depth-chart-text depth-chart-list-item">
-            {{item.name}}
-        </li>
-    </ul>
-    <app-depth-chart-add></app-depth-chart-add>
-</div>
+<ul class="depth-chart-list">
+    <li *ngFor="let item of items" class="depth-chart-text depth-chart-list-item">
+        {{item.name}}
+    </li>
+</ul>

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DepthChartListComponent } from './depth-chart/depth-chart-list/depth-chart-list.component';
 import { DepthChartAddComponent } from './depth-chart/depth-chart-add/depth-chart-add.component';
+import { DepthChartPlayersComponent } from './depth-chart/depth-chart-players/depth-chart-players.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -15,7 +16,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         DepthChartListComponent,
-        DepthChartAddComponent
+        DepthChartAddComponent,
+        DepthChartPlayersComponent
       ],
     }).compileComponents();
   }));

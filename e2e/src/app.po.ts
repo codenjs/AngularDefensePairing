@@ -1,4 +1,4 @@
-import { browser, by, element, $, $$, ElementFinder } from 'protractor';
+import { browser, $, $$, ElementFinder } from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -6,19 +6,19 @@ export class AppPage {
   }
 
   getTitleText() {
-    return $('app-depth-chart-list h3').getText() as Promise<string>;
+    return $('app-depth-chart-players h3').getText() as Promise<string>;
   }
 
   depthChart() {
-    return $$('app-depth-chart-list li').map(e => e.getText()) as Promise<string[]>;
+    return $$('app-depth-chart-players li').map(e => e.getText()) as Promise<string[]>;
   }
 
   newName() {
-    return $('app-depth-chart-list input') as ElementFinder;
+    return $('app-depth-chart-players input') as ElementFinder;
   }
 
   addButton() {
-    return $('app-depth-chart-list button') as ElementFinder;
+    return $('app-depth-chart-players button') as ElementFinder;
   }
 
   errorMessageText() {
