@@ -11,7 +11,7 @@ describe('workspace-project App', () => {
 
   it('should add a valid name to existing depth chart then show an error message when the name is added again', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Depth Chart');
+    expect(page.getTitleText()).toEqual('Depth Chart (6)');
     expect(page.depthChart()).toEqual(initialDepthChart);
 
     const testName = 'NewName1';

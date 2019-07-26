@@ -3,6 +3,7 @@
 .depth-chart-column {
     width: 250px;
     display: table-cell;
+    padding: 2px;
 }
 
 .depth-chart-text {

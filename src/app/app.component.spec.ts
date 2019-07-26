@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { DepthChartListComponent } from './depth-chart/depth-chart-list/depth-chart-list.component';
 import { DepthChartAddComponent } from './depth-chart/depth-chart-add/depth-chart-add.component';
 import { DepthChartPlayersComponent } from './depth-chart/depth-chart-players/depth-chart-players.component';
+import { DepthChartPairingsComponent } from './depth-chart/depth-chart-pairings/depth-chart-pairings.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -17,7 +18,8 @@ describe('AppComponent', () => {
         AppComponent,
         DepthChartListComponent,
         DepthChartAddComponent,
-        DepthChartPlayersComponent
+        DepthChartPlayersComponent,
+        DepthChartPairingsComponent
       ],
     }).compileComponents();
   }));

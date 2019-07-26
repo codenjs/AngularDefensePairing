@@ -6,6 +6,7 @@ import { DepthChartListItem } from './depth-chart-list-item';
 })
 export class DepthChartService {
   players: DepthChartListItem[];
+  pairings: DepthChartListItem[];
 
   constructor() {
     this.players = [
@@ -16,13 +17,35 @@ export class DepthChartService {
       { name: 'Logan' },
       { name: 'Braeden' }
     ];
+    this.pairings = [];
+    this.generatePairings();
   }
 
   getPlayers(): DepthChartListItem[] {
     return this.players;
   }
 
+  getPairings(): DepthChartListItem[] {
+    return this.pairings;
+  }
+
   addPlayer(newName: string): void {
     this.players.push({ name: newName });
+    this.generatePairings();
+  }
+
+  generatePairings(): void {
+    this.clearPairings();
+
+    for (let i = 0; i < this.players.length - 1; i++) {
+      for (let j = i + 1; j < this.players.length; j++) {
+        const pairing = this.players[i].name + '/' + this.players[j].name;
+        this.pairings.push({ name: pairing });
+      }
+    }
+  }
+
+  clearPairings() {
+    this.pairings.splice(0, this.pairings.length);
   }
 }
