@@ -1,5 +1,5 @@
 <div class="depth-chart-column">
     <h3>Depth Chart ({{items.length}})</h3>
-    <app-depth-chart-list [items]="items" emptyMessage="Enter players below"></app-depth-chart-list>
+    <app-depth-chart-list [items]="items" (reordered)="onReordered()" emptyMessage="Enter players below"></app-depth-chart-list>
     <app-depth-chart-add></app-depth-chart-add>
 </div>

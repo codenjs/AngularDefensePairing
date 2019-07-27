@@ -1,11 +1,16 @@
 .depth-chart-list {
-    list-style-type: none;
     padding: 0;
     margin: 10px 0;
 }
 
 .depth-chart-list-item {
+    list-style-type: none;
     background: #eeeeee;
+}
+
+.depth-chart-list-item.cdk-drag-preview {
+    height: 18px !important; /* override incorrect height style added by cdkDrag */
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .depth-chart-list-item-empty {

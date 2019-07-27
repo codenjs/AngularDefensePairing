@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DepthChartListItem } from '../depth-chart-list-item';
 
 @Component({
@@ -8,11 +9,18 @@ import { DepthChartListItem } from '../depth-chart-list-item';
 })
 export class DepthChartListComponent implements OnInit {
   @Input() items: DepthChartListItem[];
+  @Input() dragDropDisabled: boolean;
   @Input() emptyMessage: string;
+  @Output() reordered = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
+    this.reordered.emit();
   }
 }
