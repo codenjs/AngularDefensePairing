@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +13,8 @@ import { DepthChartModule } from './depth-chart/depth-chart.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DepthChartModule
+    DepthChartModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

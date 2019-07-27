@@ -6,13 +6,15 @@ import { DepthChartListComponent } from './depth-chart/depth-chart-list/depth-ch
 import { DepthChartAddComponent } from './depth-chart/depth-chart-add/depth-chart-add.component';
 import { DepthChartPlayersComponent } from './depth-chart/depth-chart-players/depth-chart-players.component';
 import { DepthChartPairingsComponent } from './depth-chart/depth-chart-pairings/depth-chart-pairings.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule
       ],
       declarations: [
         AppComponent,

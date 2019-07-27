@@ -4,23 +4,31 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DepthChartListComponent } from './depth-chart-list/depth-chart-list.component';
 import { DepthChartAddComponent } from './depth-chart-add/depth-chart-add.component';
+import { DepthChartClearDialogComponent } from './depth-chart-clear-dialog/depth-chart-clear-dialog.component';
 import { DepthChartPlayersComponent } from './depth-chart-players/depth-chart-players.component';
 import { DepthChartPairingsComponent } from './depth-chart-pairings/depth-chart-pairings.component';
+import { MatDialogModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     DepthChartListComponent,
     DepthChartAddComponent,
+    DepthChartClearDialogComponent,
     DepthChartPlayersComponent,
     DepthChartPairingsComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   exports: [
     DepthChartPlayersComponent,
     DepthChartPairingsComponent
+  ],
+  entryComponents: [
+    DepthChartClearDialogComponent
   ]
 })
 export class DepthChartModule { }

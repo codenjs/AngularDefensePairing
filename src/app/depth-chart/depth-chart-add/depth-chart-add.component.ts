@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { DepthChartService } from '../depth-chart.service';
+import { DepthChartClearDialogComponent } from '../depth-chart-clear-dialog/depth-chart-clear-dialog.component';
 
 @Component({
   selector: 'app-depth-chart-add',
@@ -14,7 +16,8 @@ export class DepthChartAddComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private depthChartService: DepthChartService) { }
+    private depthChartService: DepthChartService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -51,7 +54,13 @@ export class DepthChartAddComponent implements OnInit {
     this.newNameElement.nativeElement.focus();
   }
 
-  onClear(): void {
-    this.depthChartService.clearAll();
+  confirmClear(): void {
+    const dialogRef = this.dialog.open(DepthChartClearDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.depthChartService.clearAll();
+      }
+    });
   }
 }
