@@ -61,3 +61,20 @@ describe('DepthChartService generatePairings', () => {
     ]);
   });
 });
+
+describe('DepthChartService clearAll', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
+
+  it('should remove all players and pairings', () => {
+    const service: DepthChartService = TestBed.get(DepthChartService);
+    service.players = [{ name: 'name1' }, { name: 'name2' }];
+    service.generatePairings();
+
+    expect(service.players.length).toEqual(2);
+    expect(service.pairings.length).toEqual(1);
+
+    service.clearAll();
+    expect(service.players.length).toEqual(0);
+    expect(service.pairings.length).toEqual(0);
+  });
+});

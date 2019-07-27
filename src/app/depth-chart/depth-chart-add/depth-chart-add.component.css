@@ -16,3 +16,14 @@
 .validation-alert {
     color: red;
 }
+
+.depth-chart-clear-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.depth-chart-clear-button {
+    color: white;
+    background: #ff3333;
+    border: 1px solid #ff3333;
+}

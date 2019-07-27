@@ -50,4 +50,8 @@ export class DepthChartAddComponent implements OnInit {
     this.newName.setValue('');
     this.newNameElement.nativeElement.focus();
   }
+
+  onClear(): void {
+    this.depthChartService.clearAll();
+  }
 }

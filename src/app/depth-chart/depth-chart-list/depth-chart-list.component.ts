@@ -8,6 +8,7 @@ import { DepthChartListItem } from '../depth-chart-list-item';
 })
 export class DepthChartListComponent implements OnInit {
   @Input() items: DepthChartListItem[];
+  @Input() emptyMessage: string;
 
   constructor() {
   }

@@ -35,7 +35,7 @@ export class DepthChartService {
   }
 
   generatePairings(): void {
-    this.clearPairings();
+    this.clearArray(this.pairings);
 
     for (let i = 0; i < this.players.length - 1; i++) {
       for (let j = i + 1; j < this.players.length; j++) {
@@ -45,7 +45,12 @@ export class DepthChartService {
     }
   }
 
-  clearPairings() {
-    this.pairings.splice(0, this.pairings.length);
+  clearAll(): void {
+    this.clearArray(this.players);
+    this.clearArray(this.pairings);
+  }
+
+  clearArray(array: DepthChartListItem[]): void {
+    array.splice(0, array.length);
   }
 }

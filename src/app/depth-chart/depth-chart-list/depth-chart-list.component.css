@@ -8,6 +8,11 @@
     background: #eeeeee;
 }
 
+.depth-chart-list-item-empty {
+    text-align: center;
+    padding: 20px 0px;
+}
+
 .depth-chart-list-item:not(:first-child) {
     margin-top: 3px;
 }
