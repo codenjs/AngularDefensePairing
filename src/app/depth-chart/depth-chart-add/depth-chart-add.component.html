@@ -9,6 +9,9 @@
 <div *ngIf="newName.errors && newName.hasError('duplicateName')" class="validation-alert">
     {{newName.errors['duplicateName'].value}}
 </div>
-<div class="depth-chart-clear-container">
-    <button (click)="confirmClear()" class="depth-chart-text depth-chart-clear-button">Clear All</button>
+<div class="depth-chart-instructions">
+    Drag items to Re-order
+</div>
+<div class="depth-chart-instructions">
+    Clear the List <button (click)="confirmClear()" class="depth-chart-text depth-chart-clear-button">Clear</button>
 </div>

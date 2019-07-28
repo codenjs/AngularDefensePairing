@@ -2,10 +2,16 @@
     [cdkDropListDisabled]="dragDropDisabled"
     (cdkDropListDropped)="drop($event)"
     class="depth-chart-list">
-    <li *ngIf="!items || items.length == 0" class="depth-chart-text depth-chart-list-item depth-chart-list-item-empty">
+    <li *ngIf="!items || items.length == 0"
+        class="depth-chart-text depth-chart-list-item depth-chart-list-item-empty">
         {{emptyMessage}}
     </li>
-    <li *ngFor="let item of items" cdkDrag class="depth-chart-text depth-chart-list-item">
+    <li *ngFor="let item of items"
+        cdkDrag
+        (cdkDragStarted)="dragIsActive=true"
+        (cdkDragReleased)="dragIsActive=false"
+        [class.dragIsActive]="dragIsActive"
+        class="depth-chart-text depth-chart-list-item">
         {{item.name}}
     </li>
 </ul>

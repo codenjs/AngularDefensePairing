@@ -12,6 +12,7 @@ export class DepthChartListComponent implements OnInit {
   @Input() dragDropDisabled: boolean;
   @Input() emptyMessage: string;
   @Output() reordered = new EventEmitter();
+  dragIsActive: boolean;
 
   constructor() {
   }

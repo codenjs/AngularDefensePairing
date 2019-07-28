@@ -17,13 +17,16 @@
     color: red;
 }
 
-.depth-chart-clear-container {
-    text-align: center;
-    margin-top: 25px;
-}
-
 .depth-chart-clear-button {
     color: white;
     background: #ff3333;
     border: 1px solid #ff3333;
+}
+
+.depth-chart-instructions {
+    font-size: smaller;
+    text-align: center;
+    border: 1px solid #aaa;
+    margin-top: 5px;
+    padding: 5px;
 }
