@@ -10,10 +10,8 @@ export class DepthChartService {
 
   constructor() {
     this.players = [
-      { name: 'Claude' },
       { name: 'John' },
       { name: 'Jake' },
-      { name: 'Deckard' },
       { name: 'Logan' },
       { name: 'Braeden' }
     ];
