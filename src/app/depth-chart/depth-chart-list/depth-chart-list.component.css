@@ -8,6 +8,10 @@
     background: #eeeeee;
 }
 
+.depth-chart-list-item:not(:first-child) {
+    margin-top: 3px;
+}
+
 .depth-chart-list-item.cdk-drag-preview {
     height: 18px !important; /* override incorrect height style added by cdkDrag */
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
@@ -27,10 +31,6 @@
 .depth-chart-list-item-empty {
     text-align: center;
     padding: 20px 0px;
-}
-
-.depth-chart-list-item:not(:first-child) {
-    margin-top: 3px;
 }
 
 .depth-chart-list-item-delete {
