@@ -6,12 +6,17 @@
         class="depth-chart-text depth-chart-list-item depth-chart-list-item-empty">
         {{emptyMessage}}
     </li>
-    <li *ngFor="let item of items"
+    <li *ngFor="let item of items; let i = index"
         cdkDrag
-        (cdkDragStarted)="dragIsActive=true"
-        (cdkDragReleased)="dragIsActive=false"
-        [class.dragIsActive]="dragIsActive"
+        (cdkDragStarted)="isDragActive=true"
+        (cdkDragReleased)="isDragActive=false"
+        (mouseenter)="hoverItemIndex=i"
+        (mouseleave)="hoverItemIndex=-1"
         class="depth-chart-text depth-chart-list-item">
         {{item.name}}
+        <mat-icon
+            *ngIf="isDeleteClickable(i)"
+            (click)="delete(i)"
+            class="depth-chart-list-item-delete">highlight_off</mat-icon>
     </li>
 </ul>

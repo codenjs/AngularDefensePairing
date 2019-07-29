@@ -17,6 +17,10 @@ export class DepthChartPlayersComponent implements OnInit {
   ngOnInit() {
   }
 
+  onDeleted(index: number) {
+    this.depthChartService.deletePlayer(index);
+  }
+
   onReordered() {
     this.depthChartService.generatePairings();
   }

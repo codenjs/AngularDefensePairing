@@ -13,20 +13,15 @@
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-/*
-    Show the icon
-        -hovering over a draggable list item when nothing is currently being dragged (.depth-chart-list-item.cdk-drag)
-        -item currently being dragged (cdk-drag-preview)
-    Don't show the icon
-        -disabled lists (cdk-drag-disabled)
-        -placeholder for the item currently being dragged (cdk-drag-placeholder)
-        -items underneath the item currently being dragged (dragIsActive)
-*/
-.depth-chart-list-item.cdk-drag:not(.cdk-drag-disabled):not(.cdk-drag-placeholder):not(.dragIsActive):hover::after,
-.depth-chart-list-item.cdk-drag-preview::after {
-    content: "unfold_more";
-    font-family: "Material Icons";
-    float: right;
+/* Hide the delete icon for any item being dragged */
+.depth-chart-list-item.cdk-drag-preview > mat-icon,
+.depth-chart-list-item.cdk-drag-dragging > mat-icon,
+.depth-chart-list-item.cdk-drag-placeholder > mat-icon {
+    display: none;
+}
+
+.depth-chart-list-item.cdk-drag:not(.cdk-drag-disabled) {
+    cursor: move;
 }
 
 .depth-chart-list-item-empty {
@@ -36,4 +31,15 @@
 
 .depth-chart-list-item:not(:first-child) {
     margin-top: 3px;
+}
+
+.depth-chart-list-item-delete {
+    color: #aaa;
+    font-size: 14pt;
+    float: right;
+}
+
+.depth-chart-list-item-delete:hover {
+    color: red;
+    cursor: pointer;
 }

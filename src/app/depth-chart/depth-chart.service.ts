@@ -34,6 +34,11 @@ export class DepthChartService {
     this.generatePairings();
   }
 
+  deletePlayer(index: number): void {
+    this.players.splice(index, 1);
+    this.generatePairings();
+  }
+
   generatePairings(): void {
     this.clearArray(this.pairings);
 

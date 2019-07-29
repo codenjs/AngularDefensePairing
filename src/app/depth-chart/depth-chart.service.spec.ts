@@ -78,3 +78,21 @@ describe('DepthChartService clearAll', () => {
     expect(service.pairings.length).toEqual(0);
   });
 });
+
+describe('DepthChartService deletePlayer', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
+
+  it('should remove the player at specified index', () => {
+    const service: DepthChartService = TestBed.get(DepthChartService);
+    service.players = [{ name: 'name1' }, { name: 'name2' }, {name: 'name3'}];
+    service.generatePairings();
+
+    expect(service.players.length).toEqual(3);
+    expect(service.pairings.length).toEqual(3);
+
+    service.deletePlayer(1);
+
+    expect(service.players).toEqual([{name: 'name1'}, {name: 'name3'}]);
+    expect(service.pairings).toEqual([{name: 'name1/name3'}]);
+  });
+});

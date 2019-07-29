@@ -7,7 +7,7 @@ import { DepthChartAddComponent } from './depth-chart-add/depth-chart-add.compon
 import { DepthChartClearDialogComponent } from './depth-chart-clear-dialog/depth-chart-clear-dialog.component';
 import { DepthChartPlayersComponent } from './depth-chart-players/depth-chart-players.component';
 import { DepthChartPairingsComponent } from './depth-chart-pairings/depth-chart-pairings.component';
-import { MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatIconModule } from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -21,8 +21,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatDialogModule,
     MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
     DragDropModule
   ],
   exports: [
