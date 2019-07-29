@@ -10,7 +10,10 @@ export class AppPage {
   }
 
   depthChart() {
-    return $$('app-depth-chart-players li').map(e => e.getText()) as Promise<string[]>;
+    return $$('app-depth-chart-players li')
+      .map(e => e.getText()
+                 .then(t => t.replace('highlight_off', '').trim())
+          ) as Promise<string[]>;
   }
 
   newName() {
@@ -18,7 +21,7 @@ export class AppPage {
   }
 
   addButton() {
-    return $('app-depth-chart-players button') as ElementFinder;
+    return $('app-depth-chart-players button.depth-chart-add-button') as ElementFinder;
   }
 
   errorMessageText() {
