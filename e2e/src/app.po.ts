@@ -27,4 +27,15 @@ export class AppPage {
   errorMessageText() {
     return $('.validation-alert').getText() as Promise<string>;
   }
+
+  addNameToDepthChart(name: string) {
+    this.newName().sendKeys(name);
+    this.addButton().click();
+  }
+
+  addNamesToDepthChart(names: string[]) {
+    names.forEach(name => {
+      this.addNameToDepthChart(name);
+    });
+  }
 }

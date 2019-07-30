@@ -3,20 +3,27 @@ import { browser, logging } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
-  const initialDepthChart: string[] = ['Claude', 'John', 'Jake', 'Deckard', 'Logan', 'Braeden'];
+  let initialDepthChart: string[];
 
-  beforeEach(() => {
+  beforeAll(() => {
     page = new AppPage();
+    page.navigateTo();
+
+    const preloadDepthChart: string[] = ['Claude', 'John', 'Jake'];
+    page.addNamesToDepthChart(preloadDepthChart);
+    expect(page.depthChart()).toEqual(preloadDepthChart);
+  });
+
+  beforeEach(async () => {
+    initialDepthChart = await page.depthChart();
+    page.newName().clear();
   });
 
   it('should add a valid name to existing depth chart then show an error message when the name is added again', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Depth Chart (6)');
-    expect(page.depthChart()).toEqual(initialDepthChart);
+    expect(page.getTitleText()).toEqual(`Depth Chart (${initialDepthChart.length})`);
 
     const testName = 'NewName1';
-    page.newName().sendKeys(testName);
-    page.addButton().click();
+    page.addNameToDepthChart(testName);
 
     const expectedResultDepthChart = [...initialDepthChart]; // clone
     expectedResultDepthChart.push(testName);
@@ -24,8 +31,7 @@ describe('workspace-project App', () => {
     expect(page.depthChart()).toEqual(expectedResultDepthChart);
     expect(page.newName().getAttribute('value')).toBe('');
 
-    page.newName().sendKeys(testName);
-    page.addButton().click();
+    page.addNameToDepthChart(testName);
 
     expect(page.depthChart()).toEqual(expectedResultDepthChart);
     expect(page.newName().getAttribute('value')).toBe(testName);
@@ -33,12 +39,8 @@ describe('workspace-project App', () => {
   });
 
   it('should show an error message when name already exists', () => {
-    page.navigateTo();
-    expect(page.depthChart()).toEqual(initialDepthChart);
-
     const testName = 'John';
-    page.newName().sendKeys(testName);
-    page.addButton().click();
+    page.addNameToDepthChart(testName);
 
     expect(page.depthChart()).toEqual(initialDepthChart);
     expect(page.newName().getAttribute('value')).toBe(testName);
