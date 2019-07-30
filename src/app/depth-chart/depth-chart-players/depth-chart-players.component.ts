@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DepthChartListItem } from '../depth-chart-list-item';
+import { DepthChartListItem, DepthChartMoveEventArgs } from '../depth-chart-list-item';
 import { DepthChartService } from '../depth-chart.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class DepthChartPlayersComponent implements OnInit {
     this.depthChartService.deletePlayer(index);
   }
 
-  onReordered() {
-    this.depthChartService.generatePairings();
+  onReordered(args: DepthChartMoveEventArgs) {
+    this.depthChartService.movePlayer(args);
   }
 }

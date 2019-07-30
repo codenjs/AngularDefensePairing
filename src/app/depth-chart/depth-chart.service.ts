@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { DepthChartListItem } from './depth-chart-list-item';
+import { DepthChartListItem, DepthChartMoveEventArgs } from './depth-chart-list-item';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +8,22 @@ import { DepthChartListItem } from './depth-chart-list-item';
 export class DepthChartService {
   players: DepthChartListItem[];
   pairings: DepthChartListItem[];
+  dataStoreKey = 'data';
 
   constructor() {
-    this.players = [
-      { name: 'John' },
-      { name: 'Jake' },
-      { name: 'Logan' },
-      { name: 'Braeden' }
-    ];
+    this.players = this.fetchData();
     this.pairings = [];
     this.generatePairings();
+  }
+
+  private fetchData(): DepthChartListItem[] {
+    const data = localStorage.getItem(this.dataStoreKey);
+    return data ? JSON.parse(data).players : [];
+  }
+
+  private saveData(): void {
+    const data = { players: this.players };
+    localStorage.setItem(this.dataStoreKey, JSON.stringify(data));
   }
 
   getPlayers(): DepthChartListItem[] {
@@ -30,11 +37,19 @@ export class DepthChartService {
   addPlayer(newName: string): void {
     this.players.push({ name: newName });
     this.generatePairings();
+    this.saveData();
   }
 
   deletePlayer(index: number): void {
     this.players.splice(index, 1);
     this.generatePairings();
+    this.saveData();
+  }
+
+  movePlayer(args: DepthChartMoveEventArgs) {
+    moveItemInArray(this.players, args.sourceIndex, args.destinationIndex);
+    this.generatePairings();
+    this.saveData();
   }
 
   generatePairings(): void {
@@ -51,9 +66,10 @@ export class DepthChartService {
   clearAll(): void {
     this.clearArray(this.players);
     this.clearArray(this.pairings);
+    this.saveData();
   }
 
-  clearArray(array: DepthChartListItem[]): void {
+  private clearArray(array: DepthChartListItem[]): void {
     array.splice(0, array.length);
   }
 }

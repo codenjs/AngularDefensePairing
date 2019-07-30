@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { DepthChartListItem } from '../depth-chart-list-item';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DepthChartListItem, DepthChartMoveEventArgs } from '../depth-chart-list-item';
 
 @Component({
   selector: 'app-depth-chart-list',
@@ -11,7 +11,7 @@ export class DepthChartListComponent implements OnInit {
   @Input() items: DepthChartListItem[];
   @Input() dragDropDisabled: boolean;
   @Input() emptyMessage: string;
-  @Output() reordered = new EventEmitter();
+  @Output() reordered = new EventEmitter<DepthChartMoveEventArgs>();
   @Output() deleted = new EventEmitter<number>();
   isDragActive: boolean;
   hoverItemIndex: number;
@@ -23,8 +23,7 @@ export class DepthChartListComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
-    this.reordered.emit();
+    this.reordered.emit(new DepthChartMoveEventArgs(event.previousIndex, event.currentIndex));
   }
 
   delete(index: number) {
