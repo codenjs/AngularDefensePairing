@@ -1,0 +1,7 @@
+<div class="depth-chart-column">
+    <h3>Game Plans ({{items.length}})</h3>
+    <app-depth-chart-list [items]="items" [dragDropDisabled]="true" emptyMessage="None"></app-depth-chart-list>
+    <div class="depth-chart-add-container">
+        <button [routerLink]="['game', 0]" class="depth-chart-text depth-chart-add-button">Add</button>
+    </div>
+</div>
