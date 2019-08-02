@@ -1,5 +1,6 @@
 export class DepthChartListItem {
     name: string;
+    value?: number;
 }
 
 export class DepthChartMoveEventArgs {

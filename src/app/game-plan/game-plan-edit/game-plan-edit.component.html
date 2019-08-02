@@ -2,3 +2,36 @@
     Description: <input type="text" formControlName="gameDescription" />
     <button class="depth-chart-text game-plan-save-button">Save</button>
 </form>
+
+<div cdkDropListGroup style="display: flex;">
+    <div>
+        <h3>Pairings ({{pairings.length}})</h3>
+        <div cdkDropList cdkDropListSortingDisabled class="list-sorted">
+            <div *ngFor="let item of pairings; let i = index"
+                cdkDrag
+                [cdkDragData]="item"
+                class="depth-chart-list-item">
+                    {{item.name}}-{{pairCount(item.value)}}
+                    <div *cdkDragPreview>{{item.name}}</div>
+                    <div *cdkDragPlaceholder>{{item.name}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3>First Period</h3>
+        <div cdkDropList
+            (cdkDropListDropped)="onDrop($event)"
+            [cdkDropListData]="period1"
+            [cdkDropListEnterPredicate]="disallowDuplicate"
+            style="height: 100px; border: 1px solid black;">
+            <div *ngFor="let item of period1">{{item.name}}</div>
+        </div>
+    </div>
+
+    <div>
+        <h3>Players</h3>
+        <div *ngFor="let item of players">{{item.name}}-{{item.value}}</div>
+    </div>
+
+</div>

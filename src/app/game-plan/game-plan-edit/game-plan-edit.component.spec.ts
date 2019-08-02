@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { GamePlanEditComponent } from './game-plan-edit.component';
 
@@ -13,7 +14,8 @@ describe('GamePlanEditComponent', () => {
       declarations: [ GamePlanEditComponent ],
       imports: [
         ReactiveFormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        DragDropModule
       ]
     })
     .compileComponents();
