@@ -7,11 +7,13 @@ import { AppRoutingModule } from '../app-routing.module';
 import { DepthChartModule } from '../depth-chart/depth-chart.module';
 import { GamePlanListComponent } from './game-plan-list/game-plan-list.component';
 import { GamePlanEditComponent } from './game-plan-edit/game-plan-edit.component';
+import { GamePlanPeriodComponent } from './game-plan-period/game-plan-period.component';
 
 @NgModule({
   declarations: [
     GamePlanListComponent,
-    GamePlanEditComponent
+    GamePlanEditComponent,
+    GamePlanPeriodComponent
   ],
   imports: [
     CommonModule,

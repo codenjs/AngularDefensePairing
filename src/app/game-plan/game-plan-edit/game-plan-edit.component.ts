@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
@@ -13,10 +12,8 @@ import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
   styleUrls: ['./game-plan-edit.component.css']
 })
 export class GamePlanEditComponent implements OnInit {
-  players: DepthChartListItem[];
   pairings: DepthChartListItem[];
   pairingGroups = {};
-  period1: DepthChartListItem[] = [];
   gameForm: FormGroup;
 
   constructor(
@@ -26,12 +23,7 @@ export class GamePlanEditComponent implements OnInit {
     private depthChartService: DepthChartService) { }
 
   ngOnInit() {
-    this.players = this.depthChartService.getPlayers();
     this.pairings = this.depthChartService.getPairings();
-
-    this.players.forEach((element) => {
-      element.value = 0;
-    });
 
     this.pairings.forEach((element, i) => {
       element.value = i;
@@ -44,31 +36,12 @@ export class GamePlanEditComponent implements OnInit {
     });
   }
 
-  disallowDuplicate(draggedItem: CdkDrag<DepthChartListItem>, targetDropList: CdkDropList<DepthChartListItem[]>) {
-    const existingValues = targetDropList.data.map(i => i.value);
-    return !existingValues.includes(draggedItem.data.value);
+  onPeriodUpdated() {
+    this.updatePairingGroups();
   }
 
-  onDrop(event: CdkDragDrop<DepthChartListItem>) {
-    const names = event.item.data.name.split('/');
-    this.incrementPlayer(names[0]);
-    this.incrementPlayer(names[1]);
-    this.updateTargetList(event.previousIndex);
-    this.countPairs();
-  }
-
-  incrementPlayer(name: string) {
-    const player = this.players.filter(p => p.name === name)[0];
-    player.value++;
-  }
-
-  updateTargetList(draggedIndex: number) {
-    this.period1.push(this.pairings[draggedIndex]);
-    this.period1.sort((a, b) => a.value - b.value);
-  }
-
-  countPairs() {
-    this.pairingGroups = this.period1.reduce((groups, item) => {
+  updatePairingGroups() {
+    this.pairingGroups = this.gamePlanService.getSelectedPairings().reduce((groups, item) => {
       const group = (groups[item.value] || []);
       group.push(item);
       groups[item.value] = group;

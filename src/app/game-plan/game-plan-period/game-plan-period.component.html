@@ -1,0 +1,17 @@
+<div class="game-plan-period">
+    <div class="game-plan-period-pairings">
+        <h3>Period {{period}}</h3>
+        <div cdkDropList
+            (cdkDropListDropped)="onDrop($event)"
+            [cdkDropListData]="pairings"
+            [cdkDropListEnterPredicate]="disallowDuplicate"
+            class="game-plan-period-dropzone">
+            <div *ngFor="let item of pairings">{{item.name}}</div>
+        </div>
+    </div>
+
+    <div class="game-plan-period-players">
+        <h3>Players</h3>
+        <div *ngFor="let item of players">{{item.name}}-{{playerCount(item.name)}}</div>
+    </div>
+</div>

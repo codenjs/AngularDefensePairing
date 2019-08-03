@@ -6,9 +6,11 @@ import { DepthChartListItem } from '../depth-chart/depth-chart-list-item';
 })
 export class GamePlanService {
   games: DepthChartListItem[];
+  selectedPairings: DepthChartListItem[];
 
   constructor() {
     this.games = [];
+    this.selectedPairings = [];
   }
 
   getGames(): DepthChartListItem[] {
@@ -17,5 +19,9 @@ export class GamePlanService {
 
   addGame(newName: string): void {
     this.games.push({ name: newName });
+  }
+
+  getSelectedPairings(): DepthChartListItem[] {
+    return this.selectedPairings;
   }
 }

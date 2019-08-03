@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { GamePlanEditComponent } from './game-plan-edit.component';
+import { GamePlanPeriodComponent } from '../game-plan-period/game-plan-period.component';
 
 describe('GamePlanEditComponent', () => {
   let component: GamePlanEditComponent;
@@ -11,7 +12,10 @@ describe('GamePlanEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GamePlanEditComponent ],
+      declarations: [
+        GamePlanEditComponent,
+        GamePlanPeriodComponent
+      ],
       imports: [
         ReactiveFormsModule,
         RouterTestingModule,
