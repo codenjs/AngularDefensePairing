@@ -16,6 +16,8 @@
         </div>
     </div>
 
-    <app-game-plan-period [period]="1" (updated)="onPeriodUpdated()">
-    </app-game-plan-period>
+    <div class="game-plan-periods">
+        <app-game-plan-period *ngFor="let i of gamePlanService.periods" [period]="i" (updated)="onPeriodUpdated()">
+        </app-game-plan-period>
+    </div>
 </div>

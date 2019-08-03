@@ -5,12 +5,16 @@ import { DepthChartListItem } from '../depth-chart/depth-chart-list-item';
   providedIn: 'root'
 })
 export class GamePlanService {
+  periods = [0, 1, 2];
   games: DepthChartListItem[];
-  selectedPairings: DepthChartListItem[];
+  selectedPairings: DepthChartListItem[][];
 
   constructor() {
     this.games = [];
     this.selectedPairings = [];
+    this.periods.forEach(_ => {
+      this.selectedPairings.push([]);
+    });
   }
 
   getGames(): DepthChartListItem[] {
@@ -21,7 +25,16 @@ export class GamePlanService {
     this.games.push({ name: newName });
   }
 
-  getSelectedPairings(): DepthChartListItem[] {
-    return this.selectedPairings;
+  getAllSelectedPairings(): DepthChartListItem[] {
+    return this.selectedPairings.reduce((a, b) => a.concat(b));
+  }
+
+  getSelectedPairingsByPeriod(period: number): DepthChartListItem[] {
+    return this.selectedPairings[period];
+  }
+
+  addPairing(period: number, pairing: DepthChartListItem): void {
+    this.selectedPairings[period].push(pairing);
+    this.selectedPairings[period].sort((a, b) => a.value - b.value);
   }
 }

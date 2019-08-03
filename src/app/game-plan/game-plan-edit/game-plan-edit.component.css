@@ -8,3 +8,8 @@
 .game-plan-pairings {
     display: flex;
 }
+
+.game-plan-periods {
+    display: flex;
+    flex-direction: column;
+}

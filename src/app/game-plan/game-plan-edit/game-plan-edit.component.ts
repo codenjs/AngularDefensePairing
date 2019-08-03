@@ -20,7 +20,7 @@ export class GamePlanEditComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private gamePlanService: GamePlanService,
+    public gamePlanService: GamePlanService,
     private depthChartService: DepthChartService) { }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class GamePlanEditComponent implements OnInit {
 
   onPeriodUpdated() {
     this.pairingCounter.setCounts(
-      this.gamePlanService.getSelectedPairings(),
+      this.gamePlanService.getAllSelectedPairings(),
       p => p.value);
   }
 

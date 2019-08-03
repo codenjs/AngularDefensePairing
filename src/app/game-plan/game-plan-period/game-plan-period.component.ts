@@ -24,7 +24,7 @@ export class GamePlanPeriodComponent implements OnInit {
 
   ngOnInit() {
     this.players = this.depthChartService.getPlayers();
-    this.pairings = this.gamePlanService.getSelectedPairings();
+    this.pairings = this.gamePlanService.getSelectedPairingsByPeriod(this.period);
   }
 
   disallowDuplicate(draggedItem: CdkDrag<DepthChartListItem>, targetDropList: CdkDropList<DepthChartListItem[]>) {
@@ -33,8 +33,7 @@ export class GamePlanPeriodComponent implements OnInit {
   }
 
   onDrop(event: CdkDragDrop<DepthChartListItem>) {
-    this.pairings.push(event.item.data);
-    this.pairings.sort((a, b) => a.value - b.value);
+    this.gamePlanService.addPairing(this.period, event.item.data);
     this.updatePlayerCounts();
     this.updated.emit();
   }
