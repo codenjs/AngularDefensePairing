@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
-import { UniqueCounter } from '../unique-counter';
+import { UniqueCounter } from 'src/app/shared/unique-counter';
 
 @Component({
   selector: 'app-game-plan-edit',
