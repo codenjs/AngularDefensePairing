@@ -38,6 +38,12 @@ export class GamePlanPeriodComponent implements OnInit {
     this.updated.emit();
   }
 
+  onDelete(pairingValue: number) {
+    this.gamePlanService.deletePairing(this.period, pairingValue);
+    this.updatePlayerCounts();
+    this.updated.emit();
+  }
+
   updatePlayerCounts() {
     const allPlayerNames = this.splitPairingsIntoPlayerNames();
     this.playerCounter.setCounts(allPlayerNames, n => n);

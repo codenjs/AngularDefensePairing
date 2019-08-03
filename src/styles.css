@@ -9,3 +9,45 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.app-list-item {
+    list-style-type: none;
+    background: #eeeeee;
+}
+
+.app-list-item:not(:first-child) {
+    margin-top: 3px;
+}
+
+.app-list-item.cdk-drag-preview {
+    height: 18px !important; /* override incorrect height style added by cdkDrag */
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Hide the delete icon for any item being dragged */
+.app-list-item.cdk-drag-preview > mat-icon,
+.app-list-item.cdk-drag-dragging > mat-icon,
+.app-list-item.cdk-drag-placeholder > mat-icon {
+    display: none;
+}
+
+.app-list-item.cdk-drag:not(.cdk-drag-disabled) {
+    cursor: move;
+}
+
+.app-list-item-empty {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.app-list-item-delete {
+    color: #aaa;
+    font-size: 14pt;
+    float: right;
+    margin-left: 10px;
+}
+
+.app-list-item-delete:hover {
+    color: red;
+    cursor: pointer;
+}

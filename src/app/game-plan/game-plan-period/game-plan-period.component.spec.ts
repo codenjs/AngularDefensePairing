@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { GamePlanPeriodComponent } from './game-plan-period.component';
+import { GamePlanModule } from '../game-plan.module';
+import { DepthChartModule } from 'src/app/depth-chart/depth-chart.module';
+import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 
 describe('GamePlanPeriodComponent', () => {
   let component: GamePlanPeriodComponent;
@@ -9,8 +11,8 @@ describe('GamePlanPeriodComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GamePlanPeriodComponent ],
-      imports: [ DragDropModule ]
+      declarations: [ DashboardComponent ],
+      imports: [ GamePlanModule, DepthChartModule ]
     })
     .compileComponents();
   }));

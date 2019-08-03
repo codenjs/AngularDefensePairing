@@ -8,10 +8,11 @@
         <h3>Pairings ({{pairings.length}})</h3>
         <div cdkDropList cdkDropListSortingDisabled>
             <div *ngFor="let item of pairings"
-                cdkDrag [cdkDragData]="item">
+                cdkDrag [cdkDragData]="item"
+                class="depth-chart-text app-list-item">
                     {{item.name}}-{{pairingCounter.getCount(item.value)}}
-                    <div *cdkDragPreview>{{item.name}}</div>
-                    <div *cdkDragPlaceholder>{{item.name}}</div>
+                    <div *cdkDragPreview     class="depth-chart-text app-list-item">{{item.name}}</div>
+                    <div *cdkDragPlaceholder class="depth-chart-text app-list-item">{{item.name}}</div>
             </div>
         </div>
     </div>

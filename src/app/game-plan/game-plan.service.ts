@@ -37,4 +37,9 @@ export class GamePlanService {
     this.selectedPairings[period].push(pairing);
     this.selectedPairings[period].sort((a, b) => a.value - b.value);
   }
+
+  deletePairing(period: number, pairingValue: number): void {
+    const index = this.selectedPairings[period].findIndex(p => p.value === pairingValue);
+    this.selectedPairings[period].splice(index, 1);
+  }
 }

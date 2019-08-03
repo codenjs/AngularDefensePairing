@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatIconModule } from '@angular/material';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { DepthChartModule } from '../depth-chart/depth-chart.module';
@@ -20,6 +21,7 @@ import { GamePlanPeriodComponent } from './game-plan-period/game-plan-period.com
     AppRoutingModule,
     ReactiveFormsModule,
     DragDropModule,
+    MatIconModule,
     DepthChartModule
   ],
   exports: [

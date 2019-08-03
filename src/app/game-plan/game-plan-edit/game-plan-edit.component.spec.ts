@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { GamePlanEditComponent } from './game-plan-edit.component';
-import { GamePlanPeriodComponent } from '../game-plan-period/game-plan-period.component';
+import { GamePlanModule } from '../game-plan.module';
+import { DepthChartModule } from 'src/app/depth-chart/depth-chart.module';
+import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 
 describe('GamePlanEditComponent', () => {
   let component: GamePlanEditComponent;
@@ -13,13 +14,13 @@ describe('GamePlanEditComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        GamePlanEditComponent,
-        GamePlanPeriodComponent
+        DashboardComponent
       ],
       imports: [
         ReactiveFormsModule,
         RouterTestingModule,
-        DragDropModule
+        GamePlanModule,
+        DepthChartModule
       ]
     })
     .compileComponents();
