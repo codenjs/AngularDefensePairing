@@ -12,6 +12,6 @@
 
     <div class="game-plan-period-players">
         <h3>Players</h3>
-        <div *ngFor="let item of players">{{item.name}}-{{playerCount(item.name)}}</div>
+        <div *ngFor="let item of players">{{item.name}}-{{playerCounter.getCount(item.name)}}</div>
     </div>
 </div>

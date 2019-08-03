@@ -9,7 +9,7 @@
         <div cdkDropList cdkDropListSortingDisabled>
             <div *ngFor="let item of pairings"
                 cdkDrag [cdkDragData]="item">
-                    {{item.name}}-{{pairCount(item.value)}}
+                    {{item.name}}-{{pairingCounter.getCount(item.value)}}
                     <div *cdkDragPreview>{{item.name}}</div>
                     <div *cdkDragPlaceholder>{{item.name}}</div>
             </div>

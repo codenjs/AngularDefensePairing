@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
+import { UniqueCounter } from '../unique-counter';
 
 @Component({
   selector: 'app-game-plan-edit',
@@ -13,7 +14,7 @@ import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
 })
 export class GamePlanEditComponent implements OnInit {
   pairings: DepthChartListItem[];
-  pairingGroups = {};
+  pairingCounter = new UniqueCounter<DepthChartListItem, number>();
   gameForm: FormGroup;
 
   constructor(
@@ -37,21 +38,9 @@ export class GamePlanEditComponent implements OnInit {
   }
 
   onPeriodUpdated() {
-    this.updatePairingGroups();
-  }
-
-  updatePairingGroups() {
-    this.pairingGroups = this.gamePlanService.getSelectedPairings().reduce((groups, item) => {
-      const group = (groups[item.value] || []);
-      group.push(item);
-      groups[item.value] = group;
-      return groups;
-    }, {});
-  }
-
-  pairCount(index: number): number {
-    const group = this.pairingGroups[index] || [];
-    return group.length;
+    this.pairingCounter.setCounts(
+      this.gamePlanService.getSelectedPairings(),
+      p => p.value);
   }
 
   onSubmit(): void {

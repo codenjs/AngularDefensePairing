@@ -4,6 +4,7 @@ import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
+import { UniqueCounter } from '../unique-counter';
 
 @Component({
   selector: 'app-game-plan-period',
@@ -14,7 +15,7 @@ export class GamePlanPeriodComponent implements OnInit {
   @Input() period: number;
   players: DepthChartListItem[];
   pairings: DepthChartListItem[];
-  playerGroups = {};
+  playerCounter = new UniqueCounter<string, string>();
   @Output() updated = new EventEmitter();
 
   constructor(
@@ -34,13 +35,13 @@ export class GamePlanPeriodComponent implements OnInit {
   onDrop(event: CdkDragDrop<DepthChartListItem>) {
     this.pairings.push(event.item.data);
     this.pairings.sort((a, b) => a.value - b.value);
-    this.updatePlayerGroups();
+    this.updatePlayerCounts();
     this.updated.emit();
   }
 
-  updatePlayerGroups() {
-    const separatePlayerNames = this.splitPairingsIntoPlayerNames();
-    this.playerGroups = this.groupPlayersByName(separatePlayerNames);
+  updatePlayerCounts() {
+    const allPlayerNames = this.splitPairingsIntoPlayerNames();
+    this.playerCounter.setCounts(allPlayerNames, n => n);
   }
 
   splitPairingsIntoPlayerNames(): string[] {
@@ -51,19 +52,5 @@ export class GamePlanPeriodComponent implements OnInit {
       allNames.push(pairNames[1]);
     });
     return allNames;
-  }
-
-  groupPlayersByName(players: string[]) {
-    return players.reduce((groups, item) => {
-      const group = (groups[item] || []);
-      group.push(item);
-      groups[item] = group;
-      return groups;
-    }, {});
-  }
-
-  playerCount(name: string): number {
-    const group = this.playerGroups[name] || [];
-    return group.length;
   }
 }
