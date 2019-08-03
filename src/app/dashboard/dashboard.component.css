@@ -1,0 +1,8 @@
+.dashboard {
+    display: flex;
+}
+
+.dashboard-column {
+    width: 250px;
+    padding: 2px;
+}
