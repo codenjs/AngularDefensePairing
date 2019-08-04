@@ -1,6 +1,10 @@
 export class DepthChartListItem {
     name: string;
     value?: number;
+
+    constructor(name?: string) {
+        this.name = name;
+    }
 }
 
 export class DepthChartMoveEventArgs {

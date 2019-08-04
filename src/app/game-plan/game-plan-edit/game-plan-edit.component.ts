@@ -45,7 +45,7 @@ export class GamePlanEditComponent implements OnInit {
 
   onSubmit(): void {
     const gameDescription = this.gameForm.get('gameDescription').value;
-    this.gamePlanService.addGame(gameDescription);
+    this.gamePlanService.addGamePlan(gameDescription);
     this.router.navigate(['']);
   }
 }

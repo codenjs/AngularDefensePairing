@@ -11,7 +11,7 @@ export class GamePlanListComponent implements OnInit {
   items: DepthChartListItem[];
 
   constructor(private gamePlanService: GamePlanService) {
-    this.items = this.gamePlanService.getGames();
+    this.items = this.gamePlanService.getGamePlanList();
   }
 
   ngOnInit() {

@@ -1,45 +1,47 @@
 import { Injectable } from '@angular/core';
 import { DepthChartListItem } from '../depth-chart/depth-chart-list-item';
+import { GamePlan } from './game-plan';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamePlanService {
-  periods = [0, 1, 2];
-  games: DepthChartListItem[];
-  selectedPairings: DepthChartListItem[][];
+  periods = GamePlan.periodIndex;
+  games: GamePlan[];
+  currentGame: GamePlan;
 
   constructor() {
     this.games = [];
-    this.selectedPairings = [];
-    this.periods.forEach(_ => {
-      this.selectedPairings.push([]);
-    });
+    this.currentGame = new GamePlan();
   }
 
-  getGames(): DepthChartListItem[] {
-    return this.games;
+  getGamePlanList(): DepthChartListItem[] {
+    return this.games.map(g => new DepthChartListItem(g.description));
   }
 
-  addGame(newName: string): void {
-    this.games.push({ name: newName });
+  addGamePlan(newDescription: string): void {
+    this.currentGame.description = newDescription;
+
+    this.games.push(this.currentGame);
+
+    this.currentGame = new GamePlan();
   }
 
   getAllSelectedPairings(): DepthChartListItem[] {
-    return this.selectedPairings.reduce((a, b) => a.concat(b));
+    return this.currentGame.periods.reduce((a, b) => a.concat(b));
   }
 
   getSelectedPairingsByPeriod(period: number): DepthChartListItem[] {
-    return this.selectedPairings[period];
+    return this.currentGame.periods[period];
   }
 
   addPairing(period: number, pairing: DepthChartListItem): void {
-    this.selectedPairings[period].push(pairing);
-    this.selectedPairings[period].sort((a, b) => a.value - b.value);
+    this.currentGame.periods[period].push(pairing);
+    this.currentGame.periods[period].sort((a, b) => a.value - b.value);
   }
 
   deletePairing(period: number, pairingValue: number): void {
-    const index = this.selectedPairings[period].findIndex(p => p.value === pairingValue);
-    this.selectedPairings[period].splice(index, 1);
+    const index = this.currentGame.periods[period].findIndex(p => p.value === pairingValue);
+    this.currentGame.periods[period].splice(index, 1);
   }
 }
