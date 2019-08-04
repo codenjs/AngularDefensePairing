@@ -1,14 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.depth-chart-text {
+.depth-chart-text,
+.app-submit-button,
+.app-negative-button,
+input[type="text"] {
     font-size: 12pt;
     font-family: Arial, Helvetica, sans-serif;
     border: 1px solid black;
     padding: 3px 5px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.app-submit-button {
+    color: white;
+    background: #3333ff;
+    border: 1px solid #3333ff;
+}
+
+.app-negative-button {
+    color: white;
+    background: #ff3333;
+    border: 1px solid #ff3333;
+}
 
 .app-list-item {
     list-style-type: none;

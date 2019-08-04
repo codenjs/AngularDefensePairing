@@ -2,9 +2,9 @@
     <input type="text"
         formControlName="newName"
         #newNameInput
-        class="depth-chart-text depth-chart-add-input"
+        class="depth-chart-add-input"
         autocomplete="off" />
-    <button class="depth-chart-text depth-chart-add-button">Add</button>
+    <button class="app-submit-button depth-chart-add-button">Add</button>
 </form>
 <div *ngIf="newName.errors && newName.hasError('duplicateName')" class="validation-alert">
     {{newName.errors['duplicateName'].value}}
@@ -13,5 +13,5 @@
     Drag items to Re-order
 </div>
 <div class="depth-chart-instructions">
-    Clear the List <button (click)="confirmClear()" class="depth-chart-text depth-chart-clear-button">Clear</button>
+    Clear the List <button (click)="confirmClear()" class="app-negative-button depth-chart-clear-button">Clear</button>
 </div>

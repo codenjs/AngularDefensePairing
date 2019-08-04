@@ -7,9 +7,6 @@
 }
 
 .depth-chart-add-button {
-    color: white;
-    background: #3333ff;
-    border: 1px solid #3333ff;
     margin-left: 5px;
 }
 
@@ -18,9 +15,8 @@
 }
 
 .depth-chart-clear-button {
-    color: white;
-    background: #ff3333;
-    border: 1px solid #ff3333;
+    font-size: smaller;
+    margin-left: 5px;
 }
 
 .depth-chart-instructions {
