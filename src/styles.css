@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 10px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h3 {
+    margin-bottom: 5px;
+}
 
 .depth-chart-text,
 .app-submit-button,
@@ -26,7 +37,8 @@ input[type="text"] {
 
 .app-list {
     padding: 0;
-    margin: 10px 0;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .app-list-item {
@@ -74,4 +86,11 @@ input[type="text"] {
 .app-list-item-delete:hover {
     color: red;
     cursor: pointer;
+}
+
+.app-list-instructions {
+    color: #999;
+    font-size: smaller;
+    text-align: center;
+    margin-bottom: 2px;
 }
