@@ -1,7 +1,18 @@
 <div>
     <h3>Game Plans ({{items.length}})</h3>
-    <app-depth-chart-list [items]="items" [dragDropDisabled]="true" emptyMessage="None"></app-depth-chart-list>
+    <ul class="app-list">
+        <li *ngIf="!items || items.length == 0"
+            class="depth-chart-text app-list-item app-list-item-empty">
+            Add game plan below
+        </li>
+        <li *ngFor="let item of items; let i = index"
+            (click)="onClick(i)"
+            class="depth-chart-text app-list-item app-list-item-clickable">
+            {{item.name}}
+        </li>
+    </ul>
+    
     <div class="game-plan-add-container">
-        <button [routerLink]="['game', 0]" class="app-submit-button">Add</button>
+        <button [routerLink]="['game', -1]" class="app-submit-button">Add</button>
     </div>
 </div>

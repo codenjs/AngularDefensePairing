@@ -24,6 +24,11 @@ input[type="text"] {
     border: 1px solid #ff3333;
 }
 
+.app-list {
+    padding: 0;
+    margin: 10px 0;
+}
+
 .app-list-item {
     list-style-type: none;
     background: #eeeeee;
@@ -52,6 +57,11 @@ input[type="text"] {
 .app-list-item-empty {
     text-align: center;
     padding: 20px 0px;
+}
+
+.app-list-item-clickable:hover {
+    cursor: pointer;
+    background: #e1eaf9;
 }
 
 .app-list-item-delete {

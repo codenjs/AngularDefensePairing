@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DepthChartListItem } from '../depth-chart/depth-chart-list-item';
 import { GamePlan } from './game-plan';
+import { UserDataService } from '../shared/user-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +11,29 @@ export class GamePlanService {
   games: GamePlan[];
   currentGame: GamePlan;
 
-  constructor() {
-    this.games = [];
-    this.currentGame = new GamePlan();
+  constructor(private userDataService: UserDataService) {
+    this.games = this.userDataService.fetchGamePlans();
   }
 
   getGamePlanList(): DepthChartListItem[] {
     return this.games.map(g => new DepthChartListItem(g.description));
   }
 
-  addGamePlan(newDescription: string): void {
-    this.currentGame.description = newDescription;
+  loadGamePlan(id: number) {
+    if (id === -1) {
+      this.currentGame = new GamePlan();
+    } else {
+      this.currentGame = this.games[id];
+    }
+  }
 
-    this.games.push(this.currentGame);
-
-    this.currentGame = new GamePlan();
+  saveGamePlan(id: number) {
+    if (id === -1) {
+      this.games.push(this.currentGame);
+    } else {
+      this.games[id] = this.currentGame;
+    }
+    this.userDataService.saveGamePlans(this.games);
   }
 
   getAllSelectedPairings(): DepthChartListItem[] {

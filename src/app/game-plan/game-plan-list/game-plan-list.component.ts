@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
 import { GamePlanService } from '../game-plan.service';
 
@@ -10,11 +12,15 @@ import { GamePlanService } from '../game-plan.service';
 export class GamePlanListComponent implements OnInit {
   items: DepthChartListItem[];
 
-  constructor(private gamePlanService: GamePlanService) {
+  constructor(
+    private router: Router,
+    private gamePlanService: GamePlanService) { }
+
+  ngOnInit() {
     this.items = this.gamePlanService.getGamePlanList();
   }
 
-  ngOnInit() {
+  onClick(index: number) {
+    this.router.navigate(['game', index]);
   }
-
 }

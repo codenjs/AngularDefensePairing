@@ -25,6 +25,7 @@ export class GamePlanPeriodComponent implements OnInit {
   ngOnInit() {
     this.players = this.depthChartService.getPlayers();
     this.pairings = this.gamePlanService.getSelectedPairingsByPeriod(this.period);
+    this.updatePlayerCounts();
   }
 
   disallowDuplicate(draggedItem: CdkDrag<DepthChartListItem>, targetDropList: CdkDropList<DepthChartListItem[]>) {

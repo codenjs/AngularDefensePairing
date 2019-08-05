@@ -1,7 +1,7 @@
 <ul cdkDropList
     [cdkDropListDisabled]="dragDropDisabled"
     (cdkDropListDropped)="drop($event)"
-    class="depth-chart-list">
+    class="app-list">
     <li *ngIf="!items || items.length == 0"
         class="depth-chart-text app-list-item app-list-item-empty">
         {{emptyMessage}}
