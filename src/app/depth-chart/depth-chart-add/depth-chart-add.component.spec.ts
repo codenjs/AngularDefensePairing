@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { DepthChartAddComponent } from './depth-chart-add.component';
 import { DepthChartModule } from '../depth-chart.module';
 import { DepthChartService } from '../depth-chart.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('DepthChartAddComponent duplicateNameValidator', () => {
   let component: DepthChartAddComponent;
@@ -17,7 +18,7 @@ describe('DepthChartAddComponent duplicateNameValidator', () => {
     ]};
 
     TestBed.configureTestingModule({
-      imports: [ DepthChartModule ],
+      imports: [ DepthChartModule, SharedModule ],
       providers: [ { provide: DepthChartService, useValue: stubDepthChartService } ]
     })
     .compileComponents();

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DepthChartService } from '../depth-chart.service';
-import { DepthChartClearDialogComponent } from '../depth-chart-clear-dialog/depth-chart-clear-dialog.component';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-depth-chart-add',
@@ -55,7 +55,9 @@ export class DepthChartAddComponent implements OnInit {
   }
 
   confirmClear(): void {
-    const dialogRef = this.dialog.open(DepthChartClearDialogComponent);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: 'This will remove all players'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

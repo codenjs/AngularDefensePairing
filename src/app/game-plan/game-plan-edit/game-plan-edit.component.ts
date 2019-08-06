@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-game-plan-edit',
@@ -22,6 +24,7 @@ export class GamePlanEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private dialog: MatDialog,
     public gamePlanService: GamePlanService,
     private depthChartService: DepthChartService) { }
 
@@ -73,8 +76,16 @@ export class GamePlanEditComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  onDelete(): void {
-    this.gamePlanService.deleteGamePlan(this.id);
-    this.router.navigate(['']);
+  confirmDelete(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: 'This will delete the game plan'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.gamePlanService.deleteGamePlan(this.id);
+        this.router.navigate(['']);
+      }
+    });
   }
 }
