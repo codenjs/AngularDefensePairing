@@ -20,7 +20,10 @@ export class DepthChartAddComponent implements OnInit {
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      newName: ['', this.duplicateNameValidator()]
+      newName: ['', [
+        this.duplicateNameValidator(),
+        this.invalidCharacterValidator()
+      ]]
     }, {
       updateOn: 'submit'
     });
@@ -33,7 +36,15 @@ export class DepthChartAddComponent implements OnInit {
     return (control: AbstractControl): {[key: string]: any} | null => {
       const inputName = control.value.trim();
       return this.depthChartService.getPlayers()
-        .find(i => i.name === inputName) ? {duplicateName: {value: inputName + ' already exists'}} : null;
+        .find(i => i.name === inputName) ? {duplicateName: {value: `${inputName} already exists`}} : null;
+    };
+  }
+
+  invalidCharacterValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const regex = new RegExp(/\//);
+      const match = regex.test(control.value);
+      return match ? {invalidCharacter: {value: 'Invalid character: /'}} : null;
     };
   }
 

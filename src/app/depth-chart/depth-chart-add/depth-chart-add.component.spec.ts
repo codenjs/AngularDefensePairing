@@ -57,6 +57,38 @@ describe('DepthChartAddComponent duplicateNameValidator', () => {
   });
 });
 
+describe('DepthChartAddComponent invalidCharacterValidator', () => {
+  let component: DepthChartAddComponent;
+  let fixture: ComponentFixture<DepthChartAddComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ DepthChartModule, SharedModule ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DepthChartAddComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  const validate = (inputName: string) => {
+    return component.invalidCharacterValidator()(new FormControl(inputName));
+  };
+
+  it('should return null when all characters in the name are valid', () => {
+    const result = validate('Name1');
+    expect(result).toBeNull();
+  });
+
+  it('should return an error message when the name contains a slash', () => {
+    const result = validate('Name/1');
+    expect(result.invalidCharacter.value).toBe('Invalid character: /');
+  });
+});
+
 class Page {
   // getter properties wait to query the DOM until called.
   get nameInput() { return this.query<HTMLInputElement>('input'); }
@@ -122,10 +154,10 @@ describe('DepthChartAddComponent onSubmit', () => {
     expect(page.errorMessageVisible).toBeFalsy();
   };
 
-  const assertValidationError = (name: string) => {
+  const assertValidationError = (name: string, errorMessage: string) => {
     expect(page.nameInput.value).toBe(name);
     expect(spyDepthChartService.addPlayer).not.toHaveBeenCalled();
-    expect(page.errorMessage).toBe('Name1 already exists');
+    expect(page.errorMessage).toBe(errorMessage);
   };
 
   it('should add valid name to depth chart', () => {
@@ -149,7 +181,7 @@ describe('DepthChartAddComponent onSubmit', () => {
     page.setName(testName);
     page.clickAdd();
 
-    assertValidationError(testName);
+    assertValidationError(testName, 'Name1 already exists');
   });
 
   it('should show an error message when name has whitespace but trimmed name already exists', () => {
@@ -157,7 +189,15 @@ describe('DepthChartAddComponent onSubmit', () => {
     page.setName(testName);
     page.clickAdd();
 
-    assertValidationError(testName);
+    assertValidationError(testName, 'Name1 already exists');
+  });
+
+  it('should show an error message when name contains a slash', () => {
+    const testName = 'Name/1';
+    page.setName(testName);
+    page.clickAdd();
+
+    assertValidationError(testName, 'Invalid character: /');
   });
 
   it('should not do anything when name is empty', () => {
