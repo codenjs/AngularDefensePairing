@@ -13,6 +13,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     ConfirmDialogComponent
   ],
   exports: [
+    MatButtonModule,
     MatIconModule,
     ConfirmDialogComponent
   ],

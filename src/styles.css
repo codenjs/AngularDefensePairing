@@ -14,9 +14,6 @@ h3 {
 }
 
 .app-list-item,
-.app-submit-button,
-.app-neutral-button,
-.app-negative-button,
 input[type="text"] {
     font-size: 12pt;
     font-family: Arial, Helvetica, sans-serif;
@@ -24,22 +21,15 @@ input[type="text"] {
     padding: 3px 5px;
 }
 
-.app-submit-button {
-    color: white;
-    background: #3333ff;
-    border: 1px solid #3333ff;
+/* override mat-flat-button default styles */
+.app-small-button.mat-flat-button {
+    min-width: unset;
+    line-height: unset;
+    padding: 5px;
 }
 
-.app-neutral-button {
-    color: white;
-    background: #999999;
-    border: 1px solid #999999;
-}
-
-.app-negative-button {
-    color: white;
-    background: #ff3333;
-    border: 1px solid #ff3333;
+.mat-dialog-actions {
+    justify-content: center;
 }
 
 .app-list {

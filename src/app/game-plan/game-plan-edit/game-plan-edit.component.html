@@ -1,13 +1,15 @@
 <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
     Description: <input type="text" formControlName="gameDescription" />
-    <button class="app-submit-button">Save</button>
+    <button mat-flat-button color="primary">Save</button>
     <button type="button"
+        mat-stroked-button
         routerLink="/"
-        class="app-neutral-button game-plan-cancel-button">Cancel</button>
+        class="game-plan-cancel-button">Cancel</button>
     <button type="button"
+        mat-flat-button
+        color="warn"
         *ngIf="isEditMode()"
-        (click)="confirmDelete()"
-        class="app-negative-button">Delete</button>
+        (click)="confirmDelete()">Delete</button>
 </form>
 
 <div cdkDropListGroup class="game-plan-pairings">

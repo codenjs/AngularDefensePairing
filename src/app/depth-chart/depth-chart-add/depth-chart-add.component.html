@@ -4,11 +4,17 @@
         #newNameInput
         class="depth-chart-add-input"
         autocomplete="off" />
-    <button class="app-submit-button depth-chart-add-button">Add</button>
+    <button mat-flat-button
+        color="primary"
+        class="app-small-button depth-chart-add-button">Add</button>
 </form>
 <div *ngIf="newName.errors && newName.hasError('duplicateName')" class="validation-alert">
     {{newName.errors['duplicateName'].value}}
 </div>
 <div class="depth-chart-clear-container">
-    Clear the Depth Chart <button (click)="confirmClear()" class="app-negative-button depth-chart-clear-button">Clear</button>
+    Clear the Depth Chart
+    <button mat-flat-button
+        color="warn"
+        (click)="confirmClear()"
+        class="app-small-button depth-chart-clear-button">Clear</button>
 </div>
