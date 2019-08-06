@@ -1,8 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { DepthChartService } from '../depth-chart.service';
-import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-depth-chart-add',
@@ -17,7 +16,7 @@ export class DepthChartAddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private depthChartService: DepthChartService,
-    private dialog: MatDialog) { }
+    private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
@@ -55,14 +54,8 @@ export class DepthChartAddComponent implements OnInit {
   }
 
   confirmClear(): void {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: 'This will remove all players'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.depthChartService.clearAll();
-      }
+    this.confirmDialogService.openDialog('This will remove all players', () => {
+      this.depthChartService.clearAll();
     });
   }
 }
