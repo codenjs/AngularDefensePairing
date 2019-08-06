@@ -2,10 +2,7 @@
     [cdkDropListDisabled]="dragDropDisabled"
     (cdkDropListDropped)="drop($event)"
     class="app-list">
-    <li *ngIf="!items || items.length == 0"
-        class="app-list-item app-list-item-empty">
-        {{emptyMessage}}
-    </li>
+    <app-list-item-empty [items]="items" [message]="emptyMessage"></app-list-item-empty>
     <li *ngFor="let item of items; let i = index"
         cdkDrag
         (cdkDragStarted)="isDragActive=true"

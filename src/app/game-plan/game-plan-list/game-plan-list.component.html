@@ -6,10 +6,7 @@
     </app-list-header>
 
     <ul class="app-list">
-        <li *ngIf="!items || items.length == 0"
-            class="app-list-item app-list-item-empty">
-            Add game plan below
-        </li>
+        <app-list-item-empty [items]="items" message="Add game plan below"></app-list-item-empty>
         <li *ngFor="let item of items; let i = index"
             (click)="onClick(i)"
             class="app-list-item app-list-item-clickable">
