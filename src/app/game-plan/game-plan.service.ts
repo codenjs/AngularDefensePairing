@@ -23,6 +23,7 @@ export class GamePlanService {
     if (id === -1) {
       this.currentGame = new GamePlan();
     } else {
+      this.games = this.userDataService.fetchGamePlans();
       this.currentGame = this.games[id];
     }
   }
@@ -33,6 +34,11 @@ export class GamePlanService {
     } else {
       this.games[id] = this.currentGame;
     }
+    this.userDataService.saveGamePlans(this.games);
+  }
+
+  deleteGamePlan(id: number) {
+    this.games.splice(id, 1);
     this.userDataService.saveGamePlans(this.games);
   }
 

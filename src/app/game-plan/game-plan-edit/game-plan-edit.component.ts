@@ -31,10 +31,14 @@ export class GamePlanEditComponent implements OnInit {
     this.initializeForm();
   }
 
+  isEditMode() {
+    return this.id > -1;
+  }
+
   loadGamePlanData() {
     this.gamePlanService.loadGamePlan(this.id);
 
-    if (this.id > -1) {
+    if (this.isEditMode()) {
       this.updatePairingCounts();
     }
   }
@@ -66,6 +70,11 @@ export class GamePlanEditComponent implements OnInit {
   onSubmit(): void {
     this.gamePlanService.currentGame.description = this.gameForm.get('gameDescription').value;
     this.gamePlanService.saveGamePlan(this.id);
+    this.router.navigate(['']);
+  }
+
+  onDelete(): void {
+    this.gamePlanService.deleteGamePlan(this.id);
     this.router.navigate(['']);
   }
 }

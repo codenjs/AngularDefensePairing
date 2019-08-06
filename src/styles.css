@@ -15,6 +15,7 @@ h3 {
 
 .depth-chart-text,
 .app-submit-button,
+.app-neutral-button,
 .app-negative-button,
 input[type="text"] {
     font-size: 12pt;
@@ -27,6 +28,12 @@ input[type="text"] {
     color: white;
     background: #3333ff;
     border: 1px solid #3333ff;
+}
+
+.app-neutral-button {
+    color: white;
+    background: #999999;
+    border: 1px solid #999999;
 }
 
 .app-negative-button {

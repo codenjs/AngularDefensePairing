@@ -1,5 +1,9 @@
-.game-plan-save-button {
+button {
     margin-left: 5px;
+}
+
+.game-plan-cancel-button {
+    margin-left: 25px;
 }
 
 .game-plan-pairings {
