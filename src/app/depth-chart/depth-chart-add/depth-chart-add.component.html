@@ -8,11 +8,8 @@
         color="primary"
         class="app-small-button depth-chart-add-button">Add</button>
 </form>
-<div *ngIf="newName.errors && newName.hasError('duplicateName')" class="validation-alert">
-    {{newName.errors['duplicateName'].value}}
-</div>
-<div *ngIf="newName.errors && newName.hasError('invalidCharacter')" class="validation-alert">
-    {{newName.errors['invalidCharacter'].value}}
+<div *ngIf="newName.errors" class="validation-alert">
+    {{newNameFirstError}}
 </div>
 <div class="depth-chart-clear-container">
     Clear the Depth Chart

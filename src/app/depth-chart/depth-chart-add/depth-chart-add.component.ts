@@ -29,8 +29,13 @@ export class DepthChartAddComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form field
+  // convenience getters for easy access to form field
   get newName() { return this.addForm.get('newName'); }
+  get newNameFirstError(): string {
+    // Currently, only 1 error can occur at a time
+    const keys = Object.keys(this.newName.errors);
+    return this.newName.errors[keys[0]].value;
+  }
 
   duplicateNameValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
