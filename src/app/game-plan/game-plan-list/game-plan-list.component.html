@@ -1,6 +1,10 @@
 <div>
-    <h3>Game Plans ({{items.length}})</h3>
-    <div class="app-list-instructions">Click items to edit</div>
+    <app-list-header
+        [items]="items"
+        title="Game Plans"
+        instructions="Click items to edit">
+    </app-list-header>
+
     <ul class="app-list">
         <li *ngIf="!items || items.length == 0"
             class="app-list-item app-list-item-empty">

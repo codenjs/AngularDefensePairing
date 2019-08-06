@@ -1,6 +1,9 @@
 <div>
-    <h3>Depth Chart ({{items.length}})</h3>
-    <div class="app-list-instructions">Drag items to re-order</div>
+    <app-list-header
+        [items]="items"
+        title="Depth Chart"
+        instructions="Drag items to re-order">
+    </app-list-header>
     <app-depth-chart-list
         [items]="items"
         (deleted)="onDeleted($event)"

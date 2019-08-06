@@ -1,5 +1,8 @@
 <div>
-    <h3>Pairings ({{items.length}})</h3>
-    <div class="app-list-instructions">&nbsp;</div>
+    <app-list-header
+        [items]="items"
+        title="Pairings"
+        instructions="">
+    </app-list-header>
     <app-depth-chart-list [items]="items" [dragDropDisabled]="true" emptyMessage="Enter at least 2 players"></app-depth-chart-list>
 </div>
