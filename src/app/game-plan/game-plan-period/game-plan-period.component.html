@@ -7,7 +7,7 @@
             [cdkDropListEnterPredicate]="disallowDuplicate"
             class="game-plan-period-dropzone">
             <div *ngFor="let item of pairings"
-                class="depth-chart-text app-list-item">
+                class="app-list-item">
                 {{item.name}}
                 <mat-icon
                     (click)="onDelete(item.value)"
