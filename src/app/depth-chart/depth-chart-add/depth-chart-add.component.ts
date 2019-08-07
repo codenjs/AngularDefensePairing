@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { DepthChartService } from '../depth-chart.service';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
+import { DuplicateItemValidator } from 'src/app/shared/validators/duplicate-item-validator';
 
 @Component({
   selector: 'app-depth-chart-add',
@@ -21,7 +22,7 @@ export class DepthChartAddComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       newName: ['', [
-        this.duplicateNameValidator(),
+        DuplicateItemValidator.create(() => this.duplicateItemLookup()),
         this.invalidCharacterValidator()
       ]]
     }, {
@@ -37,12 +38,9 @@ export class DepthChartAddComponent implements OnInit {
     return this.newName.errors[keys[0]].value;
   }
 
-  duplicateNameValidator(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
-      const inputName = control.value.trim();
-      return this.depthChartService.getPlayers()
-        .find(i => i.name === inputName) ? {duplicateName: {value: `${inputName} already exists`}} : null;
-    };
+  duplicateItemLookup(): string[] {
+    return this.depthChartService.getPlayers()
+      .map(p => p.name);
   }
 
   invalidCharacterValidator(): ValidatorFn {

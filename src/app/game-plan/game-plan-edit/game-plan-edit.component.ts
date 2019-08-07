@@ -4,9 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
+import { ListItem } from 'src/app/shared/list-item';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { ListItem } from 'src/app/shared/list-item';
+import { DuplicateItemValidator } from 'src/app/shared/validators/duplicate-item-validator';
 
 @Component({
   selector: 'app-game-plan-edit',
@@ -54,7 +55,8 @@ export class GamePlanEditComponent implements OnInit {
 
     this.gameForm = this.formBuilder.group({
       gameDescription: [this.gamePlanService.currentGame.description, [
-        Validators.required
+        Validators.required,
+        DuplicateItemValidator.create(() => this.duplicateItemLookup())
       ]]
     }, {
       updateOn: 'submit'
@@ -66,7 +68,18 @@ export class GamePlanEditComponent implements OnInit {
     return this.gameForm.get('gameDescription'); }
   get gameDescriptionFirstError(): string {
     // Currently, only 1 error can occur at a time
-    return 'Description is required';
+    const keys = Object.keys(this.gameDescription.errors);
+    if (keys[0] === 'required') {
+      return 'Description is required';
+    } else {
+      return this.gameDescription.errors[keys[0]].value;
+    }
+  }
+
+  duplicateItemLookup(): string[] {
+    return this.gamePlanService.games
+      .filter((_, i) => i !== this.id)
+      .map(g => g.description);
   }
 
   updatePairingCounts() {
