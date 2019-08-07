@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { DepthChartListItem, DepthChartMoveEventArgs } from './depth-chart-list-item';
+import { DepthChartMoveEventArgs } from './depth-chart-move-event-args';
 import { UserDataService } from '../shared/user-data.service';
+import { ListItem } from '../shared/list-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepthChartService {
-  players: DepthChartListItem[];
-  pairings: DepthChartListItem[];
+  players: ListItem[];
+  pairings: ListItem[];
 
   constructor(private userDataService: UserDataService) {
     this.players = this.userDataService.fetchPlayers();
@@ -21,11 +22,11 @@ export class DepthChartService {
     this.userDataService.savePlayers(this.players);
   }
 
-  getPlayers(): DepthChartListItem[] {
+  getPlayers(): ListItem[] {
     return this.players;
   }
 
-  getPairings(): DepthChartListItem[] {
+  getPairings(): ListItem[] {
     return this.pairings;
   }
 
@@ -64,7 +65,7 @@ export class DepthChartService {
     this.saveData();
   }
 
-  private clearArray(array: DepthChartListItem[]): void {
+  private clearArray(array: ListItem[]): void {
     array.splice(0, array.length);
   }
 }

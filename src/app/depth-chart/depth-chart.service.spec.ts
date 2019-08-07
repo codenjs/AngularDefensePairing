@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DepthChartService } from './depth-chart.service';
-import { DepthChartListItem } from './depth-chart-list-item';
+import { ListItem } from '../shared/list-item';
 
 describe('DepthChartService generatePairings', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  const generateAndAssert = (input: DepthChartListItem[], expectedOutput: DepthChartListItem[]) => {
+  const generateAndAssert = (input: ListItem[], expectedOutput: ListItem[]) => {
     const service: DepthChartService = TestBed.get(DepthChartService);
     service.players = input;
     service.generatePairings();

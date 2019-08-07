@@ -5,7 +5,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
-import { DepthChartModule } from '../depth-chart/depth-chart.module';
 import { GamePlanListComponent } from './game-plan-list/game-plan-list.component';
 import { GamePlanEditComponent } from './game-plan-edit/game-plan-edit.component';
 import { GamePlanPeriodComponent } from './game-plan-period/game-plan-period.component';
@@ -21,8 +20,7 @@ import { GamePlanPeriodComponent } from './game-plan-period/game-plan-period.com
     AppRoutingModule,
     ReactiveFormsModule,
     DragDropModule,
-    SharedModule,
-    DepthChartModule
+    SharedModule
   ],
   exports: [
     GamePlanListComponent

@@ -1,9 +1,9 @@
-import { DepthChartListItem } from '../depth-chart/depth-chart-list-item';
+import { ListItem } from '../shared/list-item';
 
 export class GamePlan {
   static periodIndex = [0, 1, 2];
   description: string;
-  periods: DepthChartListItem[][] = [];
+  periods: ListItem[][] = [];
 
   constructor() {
     GamePlan.periodIndex.forEach(_ => {

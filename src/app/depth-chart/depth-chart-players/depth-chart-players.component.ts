@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DepthChartListItem, DepthChartMoveEventArgs } from '../depth-chart-list-item';
+import { DepthChartMoveEventArgs } from '../depth-chart-move-event-args';
 import { DepthChartService } from '../depth-chart.service';
+import { ListItem } from 'src/app/shared/list-item';
 
 @Component({
   selector: 'app-depth-chart-players',
@@ -8,7 +9,7 @@ import { DepthChartService } from '../depth-chart.service';
   styleUrls: ['./depth-chart-players.component.css']
 })
 export class DepthChartPlayersComponent implements OnInit {
-  items: DepthChartListItem[];
+  items: ListItem[];
 
   constructor(private depthChartService: DepthChartService) {
     this.items = this.depthChartService.getPlayers();

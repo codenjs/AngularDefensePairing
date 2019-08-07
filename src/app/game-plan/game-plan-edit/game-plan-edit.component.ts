@@ -4,9 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
-import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
+import { ListItem } from 'src/app/shared/list-item';
 
 @Component({
   selector: 'app-game-plan-edit',
@@ -15,8 +15,8 @@ import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dial
 })
 export class GamePlanEditComponent implements OnInit {
   id: number;
-  pairings: DepthChartListItem[];
-  pairingCounter = new UniqueCounter<DepthChartListItem, number>();
+  pairings: ListItem[];
+  pairingCounter = new UniqueCounter<ListItem, number>();
   gameForm: FormGroup;
 
   constructor(

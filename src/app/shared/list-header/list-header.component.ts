@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
+import { ListItem } from '../list-item';
 
 @Component({
   selector: 'app-list-header',
@@ -7,7 +7,7 @@ import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
   styleUrls: ['./list-header.component.css']
 })
 export class ListHeaderComponent {
-  @Input() items: DepthChartListItem[];
+  @Input() items: ListItem[];
   private originalTitle: string;
   private originalInstructions: string;
 

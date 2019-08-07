@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { DepthChartListItem } from '../depth-chart/depth-chart-list-item';
 import { GamePlan } from '../game-plan/game-plan';
+import { ListItem } from './list-item';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,12 @@ export class UserDataService {
     gamePlans: 'gamePlans'
   };
 
-  fetchPlayers(): DepthChartListItem[] {
+  fetchPlayers(): ListItem[] {
     const data = localStorage.getItem(this.dataStoreKeys.players);
     return JSON.parse(data) || [];
   }
 
-  savePlayers(players: DepthChartListItem[]): void {
+  savePlayers(players: ListItem[]): void {
     localStorage.setItem(this.dataStoreKeys.players, JSON.stringify(players));
   }
 

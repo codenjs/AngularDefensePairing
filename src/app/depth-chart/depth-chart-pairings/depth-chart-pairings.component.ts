@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DepthChartListItem } from '../depth-chart-list-item';
 import { DepthChartService } from '../depth-chart.service';
+import { ListItem } from 'src/app/shared/list-item';
 
 @Component({
   selector: 'app-depth-chart-pairings',
@@ -8,7 +8,7 @@ import { DepthChartService } from '../depth-chart.service';
   styleUrls: ['./depth-chart-pairings.component.css']
 })
 export class DepthChartPairingsComponent implements OnInit {
-  items: DepthChartListItem[];
+  items: ListItem[];
 
   constructor(private depthChartService: DepthChartService) {
     this.items = this.depthChartService.getPairings();

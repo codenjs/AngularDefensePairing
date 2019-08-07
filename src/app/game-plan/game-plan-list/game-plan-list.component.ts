@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
 import { GamePlanService } from '../game-plan.service';
+import { ListItem } from 'src/app/shared/list-item';
 
 @Component({
   selector: 'app-game-plan-list',
@@ -10,7 +10,7 @@ import { GamePlanService } from '../game-plan.service';
   styleUrls: ['./game-plan-list.component.css']
 })
 export class GamePlanListComponent implements OnInit {
-  items: DepthChartListItem[];
+  items: ListItem[];
 
   constructor(
     private router: Router,

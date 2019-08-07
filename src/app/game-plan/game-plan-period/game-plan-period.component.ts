@@ -3,8 +3,8 @@ import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 
 import { GamePlanService } from '../game-plan.service';
 import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
-import { DepthChartListItem } from 'src/app/depth-chart/depth-chart-list-item';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
+import { ListItem } from 'src/app/shared/list-item';
 
 @Component({
   selector: 'app-game-plan-period',
@@ -13,8 +13,8 @@ import { UniqueCounter } from 'src/app/shared/unique-counter';
 })
 export class GamePlanPeriodComponent implements OnInit {
   @Input() period: number;
-  players: DepthChartListItem[];
-  pairings: DepthChartListItem[];
+  players: ListItem[];
+  pairings: ListItem[];
   playerCounter = new UniqueCounter<string, string>();
   @Output() updated = new EventEmitter();
 
@@ -28,12 +28,12 @@ export class GamePlanPeriodComponent implements OnInit {
     this.updatePlayerCounts();
   }
 
-  disallowDuplicate(draggedItem: CdkDrag<DepthChartListItem>, targetDropList: CdkDropList<DepthChartListItem[]>) {
+  disallowDuplicate(draggedItem: CdkDrag<ListItem>, targetDropList: CdkDropList<ListItem[]>) {
     const existingValues = targetDropList.data.map(i => i.value);
     return !existingValues.includes(draggedItem.data.value);
   }
 
-  onDrop(event: CdkDragDrop<DepthChartListItem>) {
+  onDrop(event: CdkDragDrop<ListItem>) {
     this.gamePlanService.addPairing(this.period, event.item.data);
     this.updatePlayerCounts();
     this.updated.emit();
