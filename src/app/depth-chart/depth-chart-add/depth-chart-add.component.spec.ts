@@ -94,7 +94,7 @@ class Page {
   get nameInput() { return this.query<HTMLInputElement>('input'); }
   get addButton() { return this.query<HTMLButtonElement>('button'); }
 
-  get errorMessageElement() { return this.query<HTMLElement>('.validation-alert'); }
+  get errorMessageElement() { return this.query<HTMLElement>('.app-validation-alert'); }
   get errorMessage() { return this.errorMessageElement.textContent.trim(); }
   get errorMessageVisible() { return this.errorMessageElement; }
 

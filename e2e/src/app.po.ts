@@ -25,7 +25,7 @@ export class AppPage {
   }
 
   errorMessageText() {
-    return $('.validation-alert').getText() as Promise<string>;
+    return $('.app-validation-alert').getText() as Promise<string>;
   }
 
   addNameToDepthChart(name: string) {

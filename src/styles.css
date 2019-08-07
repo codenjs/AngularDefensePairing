@@ -32,6 +32,10 @@ input[type="text"] {
     justify-content: center;
 }
 
+.app-validation-alert {
+    color: red;
+}
+
 .app-list {
     padding: 0;
     margin-top: 0;

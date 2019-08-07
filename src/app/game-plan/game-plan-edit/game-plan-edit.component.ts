@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { GamePlanService } from '../game-plan.service';
@@ -53,10 +53,20 @@ export class GamePlanEditComponent implements OnInit {
     });
 
     this.gameForm = this.formBuilder.group({
-      gameDescription: [this.gamePlanService.currentGame.description]
+      gameDescription: [this.gamePlanService.currentGame.description, [
+        Validators.required
+      ]]
     }, {
       updateOn: 'submit'
     });
+  }
+
+  // convenience getters for easy access to form field
+  get gameDescription() {
+    return this.gameForm.get('gameDescription'); }
+  get gameDescriptionFirstError(): string {
+    // Currently, only 1 error can occur at a time
+    return 'Description is required';
   }
 
   updatePairingCounts() {
@@ -70,6 +80,10 @@ export class GamePlanEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.gameForm.invalid) {
+      return;
+    }
+
     this.gamePlanService.currentGame.description = this.gameForm.get('gameDescription').value;
     this.gamePlanService.saveGamePlan(this.id);
     this.router.navigate(['']);
