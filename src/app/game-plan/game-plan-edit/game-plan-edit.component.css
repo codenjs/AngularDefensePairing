@@ -14,3 +14,11 @@ button {
     display: flex;
     flex-direction: column;
 }
+
+.pairing-count-icon {
+    font-size: smaller;
+    border: 1px solid black;
+    background-color: white;
+    padding: 0px 3px;
+    margin-left: 3px;
+}

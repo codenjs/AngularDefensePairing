@@ -22,9 +22,14 @@
             <div *ngFor="let item of pairings"
                 cdkDrag [cdkDragData]="item"
                 class="app-list-item">
-                    {{item.name}}-{{pairingCounter.getCount(item.value)}}
-                    <div *cdkDragPreview     class="app-list-item">{{item.name}}</div>
-                    <div *cdkDragPlaceholder class="app-list-item">{{item.name}}</div>
+                {{item.name}}
+                <div *ngIf="pairingCounter.getCount(item.value) > 0"
+                    class="pairing-count-icon">
+                    {{pairingCounter.getCount(item.value)}}
+                </div>
+        
+                <div *cdkDragPreview     class="app-list-item">{{item.name}}</div>
+                <div *cdkDragPlaceholder class="app-list-item">{{item.name}}</div>
             </div>
         </div>
     </div>
