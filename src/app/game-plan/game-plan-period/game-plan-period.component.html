@@ -18,6 +18,19 @@
 
     <div class="game-plan-period-players">
         <h3>Players</h3>
-        <div *ngFor="let item of players">{{item.name}}-{{playerCounter.getCount(item.name)}}</div>
+        <div *ngFor="let item of players"
+            class="player-count"
+            [class.player-single]="playerCounter.getCount(item.name) === 1"
+            [class.player-multiple]="playerCounter.getCount(item.name) > 1">
+            {{item.name}}
+            <mat-icon *ngIf="playerCounter.getCount(item.name) === 1"
+                class="player-icon">
+                check
+            </mat-icon>
+            <div *ngIf="playerCounter.getCount(item.name) > 1"
+                class="player-icon">
+                {{playerCounter.getCount(item.name)}}
+            </div>
+        </div>
     </div>
 </div>

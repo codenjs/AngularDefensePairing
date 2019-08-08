@@ -10,3 +10,30 @@
 .game-plan-period-pairings, .game-plan-period-players {
     margin-left: 10px;
 }
+
+.player-count {
+    display: flex;
+    justify-content: space-between;
+ }
+
+.player-single {
+    color: rgb(35, 139, 14);
+}
+
+.player-single .player-icon {
+    font-size: 18px;
+    width: unset;
+    height: unset;
+    margin-left: 3px;
+}
+
+.player-multiple {
+    color: red;
+}
+
+.player-multiple .player-icon {
+    font-size: smaller;
+    border: 1px solid red;
+    padding: 0px 3px;
+    margin-left: 3px;
+}
