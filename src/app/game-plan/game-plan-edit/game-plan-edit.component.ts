@@ -7,8 +7,7 @@ import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { ListItem } from 'src/app/shared/list-item';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { DuplicateItemValidator } from 'src/app/shared/validators/duplicate-item-validator';
-import { WhitespaceValidator } from 'src/app/shared/validators/whitespace-validator';
+import { DuplicateItemValidator, WhitespaceValidator } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-game-plan-edit',

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { DepthChartService } from '../depth-chart.service';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { DuplicateItemValidator } from 'src/app/shared/validators/duplicate-item-validator';
+import { DuplicateItemValidator } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-depth-chart-add',
