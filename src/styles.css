@@ -43,6 +43,8 @@ input[type="text"] {
 }
 
 .app-list-item {
+    display: flex;
+    justify-content: space-between;
     list-style-type: none;
     background: #eeeeee;
 }
@@ -77,14 +79,15 @@ input[type="text"] {
     background: #e1eaf9;
 }
 
-.app-list-item-delete {
+.app-list-item .app-list-item-delete {
     color: #aaa;
     font-size: 14pt;
-    float: right;
+    width: unset;
+    height: unset;
     margin-left: 10px;
 }
 
-.app-list-item-delete:hover {
+.app-list-item .app-list-item-delete:hover {
     color: red;
     cursor: pointer;
 }
