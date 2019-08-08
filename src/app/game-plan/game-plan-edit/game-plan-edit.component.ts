@@ -8,6 +8,7 @@ import { ListItem } from 'src/app/shared/list-item';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { DuplicateItemValidator } from 'src/app/shared/validators/duplicate-item-validator';
+import { WhitespaceValidator } from 'src/app/shared/validators/whitespace-validator';
 
 @Component({
   selector: 'app-game-plan-edit',
@@ -56,6 +57,7 @@ export class GamePlanEditComponent implements OnInit {
     this.gameForm = this.formBuilder.group({
       gameDescription: [this.gamePlanService.currentGame.description, [
         Validators.required,
+        WhitespaceValidator.create('Description is empty'),
         DuplicateItemValidator.create(() => this.duplicateItemLookup())
       ]]
     }, {
@@ -97,7 +99,7 @@ export class GamePlanEditComponent implements OnInit {
       return;
     }
 
-    this.gamePlanService.currentGame.description = this.gameForm.get('gameDescription').value;
+    this.gamePlanService.currentGame.description = this.gameForm.get('gameDescription').value.trim();
     this.gamePlanService.saveGamePlan(this.id);
     this.router.navigate(['']);
   }
