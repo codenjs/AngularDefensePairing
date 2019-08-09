@@ -34,6 +34,7 @@ export class GamePlanService {
     } else {
       this.games[id] = this.currentGame;
     }
+    this.games.sort((a, b) => a.description.localeCompare(b.description));
     this.userDataService.saveGamePlans(this.games);
   }
 
