@@ -16,6 +16,13 @@ button {
 }
 
 .pairing-count-icon {
+    font-size: 18px;
+    width: unset;
+    height: unset;
+    margin-left: 3px;
+}
+
+.pairing-count-number {
     font-size: smaller;
     border: 1px solid black;
     background-color: white;

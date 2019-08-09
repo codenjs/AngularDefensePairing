@@ -23,8 +23,12 @@
                 cdkDrag [cdkDragData]="item"
                 class="app-list-item">
                 {{item.name}}
-                <div *ngIf="pairingCounter.getCount(item.value) > 0"
+                <mat-icon *ngIf="pairingCounter.getCount(item.value) === 1"
                     class="pairing-count-icon">
+                    check
+                </mat-icon>
+                <div *ngIf="pairingCounter.getCount(item.value) > 1"
+                    class="pairing-count-number">
                     {{pairingCounter.getCount(item.value)}}
                 </div>
         
