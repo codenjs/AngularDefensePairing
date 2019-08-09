@@ -17,7 +17,7 @@
     
 <div cdkDropListGroup class="game-plan-pairings">
     <div>
-        <h3>Pairings ({{pairings.length}})</h3>
+        <div class="game-plan-pairings-header">Pairings ({{pairings.length}})</div>
         <div cdkDropList cdkDropListSortingDisabled>
             <div *ngFor="let item of pairings"
                 cdkDrag [cdkDragData]="item"
@@ -38,8 +38,8 @@
         </div>
     </div>
 
-    <div class="game-plan-periods">
-        <app-game-plan-period *ngFor="let i of gamePlanService.periods" [period]="i" (updated)="onPeriodUpdated()">
-        </app-game-plan-period>
-    </div>
+    <table class="game-plan-periods">
+        <tbody app-game-plan-period *ngFor="let i of gamePlanService.periods" [period]="i" (updated)="onPeriodUpdated()">
+        </tbody>
+    </table>
 </div>

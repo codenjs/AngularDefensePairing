@@ -1,23 +1,21 @@
-<div class="game-plan-period">
-    <div class="game-plan-period-pairings">
-        <h3>Period {{period + 1}}</h3>
-        <div cdkDropList
-            (cdkDropListDropped)="onDrop($event)"
-            [cdkDropListData]="pairings"
-            [cdkDropListEnterPredicate]="disallowDuplicate"
-            class="game-plan-period-dropzone">
-            <div *ngFor="let item of pairings"
-                class="app-list-item">
-                {{item.name}}
-                <mat-icon
-                    (click)="onDelete(item.value)"
-                    class="app-list-item-delete">highlight_off</mat-icon>
-            </div>
+<tr>
+    <td colspan="2" class="game-plan-period-header">Period {{period + 1}}</td>
+</tr>
+<tr>
+    <td cdkDropList
+        (cdkDropListDropped)="onDrop($event)"
+        [cdkDropListData]="pairings"
+        [cdkDropListEnterPredicate]="disallowDuplicate"
+        class="game-plan-period-pairings">
+        <div *ngFor="let item of pairings"
+            class="app-list-item">
+            {{item.name}}
+            <mat-icon
+                (click)="onDelete(item.value)"
+                class="app-list-item-delete">highlight_off</mat-icon>
         </div>
-    </div>
-
-    <div class="game-plan-period-players">
-        <h3>Players</h3>
+    </td>
+    <td class="game-plan-period-players">
         <div *ngFor="let item of players"
             class="player-count"
             [class.player-single]="playerCounter.getCount(item.name) === 1"
@@ -32,5 +30,5 @@
                 {{playerCounter.getCount(item.name)}}
             </div>
         </div>
-    </div>
-</div>
+    </td>
+</tr>

@@ -7,7 +7,8 @@ import { UniqueCounter } from 'src/app/shared/unique-counter';
 import { ListItem } from 'src/app/shared/list-item';
 
 @Component({
-  selector: 'app-game-plan-period',
+  // tslint:disable-next-line: component-selector
+  selector: '[app-game-plan-period]',
   templateUrl: './game-plan-period.component.html',
   styleUrls: ['./game-plan-period.component.css']
 })

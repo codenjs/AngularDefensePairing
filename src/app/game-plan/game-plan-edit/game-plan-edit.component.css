@@ -10,9 +10,14 @@ button {
     display: flex;
 }
 
+.game-plan-pairings-header {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
 .game-plan-periods {
-    display: flex;
-    flex-direction: column;
+    border-spacing: 0;
+    margin-left: 15px;
 }
 
 .pairing-count-icon {
