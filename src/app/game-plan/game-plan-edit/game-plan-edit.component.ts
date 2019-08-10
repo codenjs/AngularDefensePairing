@@ -7,7 +7,7 @@ import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { ListItem } from 'src/app/shared/list-item';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
-import { DuplicateItemValidator, WhitespaceValidator } from 'src/app/shared/validators';
+import { DuplicateItemValidator, ValidatorExtensions, WhitespaceValidator } from 'src/app/shared/validators';
 
 @Component({
   selector: 'app-game-plan-edit',
@@ -55,7 +55,7 @@ export class GamePlanEditComponent implements OnInit {
 
     this.gameForm = this.formBuilder.group({
       gameDescription: [this.gamePlanService.currentGame.description, [
-        Validators.required,
+        ValidatorExtensions.addCustomMessage(Validators.required, 'Description is required'),
         WhitespaceValidator.create('Description is empty'),
         DuplicateItemValidator.create(() => this.duplicateItemLookup())
       ]]
@@ -65,16 +65,10 @@ export class GamePlanEditComponent implements OnInit {
   }
 
   // convenience getters for easy access to form field
-  get gameDescription() {
-    return this.gameForm.get('gameDescription'); }
+  get gameDescription() { return this.gameForm.get('gameDescription'); }
   get gameDescriptionFirstError(): string {
     // Currently, only 1 error can occur at a time
-    const keys = Object.keys(this.gameDescription.errors);
-    if (keys[0] === 'required') {
-      return 'Description is required';
-    } else {
-      return this.gameDescription.errors[keys[0]].value;
-    }
+    return ValidatorExtensions.firstError(this.gameDescription.errors);
   }
 
   duplicateItemLookup(): string[] {
