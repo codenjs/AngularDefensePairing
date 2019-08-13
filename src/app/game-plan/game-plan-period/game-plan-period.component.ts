@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 
 import { GamePlanService } from '../game-plan.service';
-import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
 import { ListItem } from 'src/app/shared/list-item';
 
@@ -19,12 +18,10 @@ export class GamePlanPeriodComponent implements OnInit {
   playerCounter = new UniqueCounter<string, string>();
   @Output() updated = new EventEmitter();
 
-  constructor(
-    private gamePlanService: GamePlanService,
-    private depthChartService: DepthChartService) { }
+  constructor(private gamePlanService: GamePlanService) { }
 
   ngOnInit() {
-    this.players = this.depthChartService.getPlayers();
+    this.players = this.gamePlanService.currentGame.players;
     this.pairings = this.gamePlanService.getSelectedPairingsByPeriod(this.period);
     this.updatePlayerCounts();
   }

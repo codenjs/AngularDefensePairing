@@ -15,7 +15,7 @@ export class DepthChartService {
   constructor(private userDataService: UserDataService) {
     this.players = this.userDataService.fetchPlayers();
     this.pairings = [];
-    this.generatePairings();
+    this.updatePairings();
   }
 
   private saveData(): void {
@@ -32,31 +32,37 @@ export class DepthChartService {
 
   addPlayer(newName: string): void {
     this.players.push({ name: newName });
-    this.generatePairings();
+    this.updatePairings();
     this.saveData();
   }
 
   deletePlayer(index: number): void {
     this.players.splice(index, 1);
-    this.generatePairings();
+    this.updatePairings();
     this.saveData();
   }
 
   movePlayer(args: DepthChartMoveEventArgs) {
     moveItemInArray(this.players, args.sourceIndex, args.destinationIndex);
-    this.generatePairings();
+    this.updatePairings();
     this.saveData();
   }
 
-  generatePairings(): void {
-    this.clearArray(this.pairings);
+  updatePairings(): void {
+    this.pairings = this.generatePairings(this.players);
+  }
 
-    for (let i = 0; i < this.players.length - 1; i++) {
-      for (let j = i + 1; j < this.players.length; j++) {
-        const pairing = this.players[i].name + '/' + this.players[j].name;
-        this.pairings.push({ name: pairing });
+  generatePairings(players: ListItem[]): ListItem[] {
+    const pairings: ListItem[] = [];
+
+    for (let i = 0; i < players.length - 1; i++) {
+      for (let j = i + 1; j < players.length; j++) {
+        const pairing = players[i].name + '/' + players[j].name;
+        pairings.push({ name: pairing });
       }
     }
+
+    return pairings;
   }
 
   clearAll(): void {

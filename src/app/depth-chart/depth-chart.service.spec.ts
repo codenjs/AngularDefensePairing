@@ -3,13 +3,13 @@ import { TestBed } from '@angular/core/testing';
 import { DepthChartService } from './depth-chart.service';
 import { ListItem } from '../shared/list-item';
 
-describe('DepthChartService generatePairings', () => {
+describe('DepthChartService updatePairings', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   const generateAndAssert = (input: ListItem[], expectedOutput: ListItem[]) => {
     const service: DepthChartService = TestBed.get(DepthChartService);
     service.players = input;
-    service.generatePairings();
+    service.updatePairings();
     expect(service.pairings).toEqual(expectedOutput);
   };
 
@@ -68,7 +68,7 @@ describe('DepthChartService clearAll', () => {
   it('should remove all players and pairings', () => {
     const service: DepthChartService = TestBed.get(DepthChartService);
     service.players = [{ name: 'name1' }, { name: 'name2' }];
-    service.generatePairings();
+    service.updatePairings();
 
     expect(service.players.length).toEqual(2);
     expect(service.pairings.length).toEqual(1);
@@ -85,7 +85,7 @@ describe('DepthChartService movePlayer', () => {
   it('should switch source item with destination item', () => {
     const service: DepthChartService = TestBed.get(DepthChartService);
     service.players = [{ name: 'name1' }, { name: 'name2' }];
-    service.generatePairings();
+    service.updatePairings();
 
     expect(service.players.length).toEqual(2);
     expect(service.pairings.length).toEqual(1);
@@ -103,7 +103,7 @@ describe('DepthChartService deletePlayer', () => {
   it('should remove the player at specified index', () => {
     const service: DepthChartService = TestBed.get(DepthChartService);
     service.players = [{ name: 'name1' }, { name: 'name2' }, {name: 'name3'}];
-    service.generatePairings();
+    service.updatePairings();
 
     expect(service.players.length).toEqual(3);
     expect(service.pairings.length).toEqual(3);

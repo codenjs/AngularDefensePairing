@@ -30,7 +30,7 @@ export class GamePlanEditComponent implements OnInit {
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.loadGamePlanData();
+    this.initializePairings();
     this.initializeForm();
   }
 
@@ -38,21 +38,28 @@ export class GamePlanEditComponent implements OnInit {
     return this.id > -1;
   }
 
-  loadGamePlanData() {
+  initializePairings() {
     this.gamePlanService.loadGamePlan(this.id);
 
-    if (this.isEditMode()) {
-      this.updatePairingCounts();
+    if (!this.currentGameHasPlayers()) {
+      this.gamePlanService.currentGame.players = this.depthChartService.getPlayers();
     }
-  }
 
-  initializeForm() {
-    this.pairings = this.depthChartService.getPairings();
+    this.pairings = this.depthChartService.generatePairings(this.gamePlanService.currentGame.players);
 
     this.pairings.forEach((element, i) => {
       element.value = i;
     });
 
+    this.updatePairingCounts();
+  }
+
+  currentGameHasPlayers(): boolean {
+    return this.gamePlanService.currentGame.players
+        && this.gamePlanService.currentGame.players.length > 0;
+  }
+
+  initializeForm() {
     this.gameForm = this.formBuilder.group({
       gameDescription: [this.gamePlanService.currentGame.description, [
         ValidatorExtensions.addCustomMessage(Validators.required, 'Description is required'),

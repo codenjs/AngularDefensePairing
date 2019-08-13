@@ -3,6 +3,7 @@ import { ListItem } from '../shared/list-item';
 export class GamePlan {
   static periodIndex = [0, 1, 2];
   description: string;
+  players: ListItem[] = [];
   periods: ListItem[][] = [];
 
   constructor() {
