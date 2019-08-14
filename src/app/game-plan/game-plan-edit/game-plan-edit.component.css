@@ -6,6 +6,23 @@ button {
     margin-left: 25px;
 }
 
+.game-plan-warning {
+    display: inline-block;
+    background-color: rgb(255, 208, 0);
+    border: 1px solid black;
+    font-size: smaller;
+    vertical-align: middle;
+    padding: 0 5px;
+    margin: 20px 0;
+}
+
+.game-plan-warning::before {
+    content: "warning"; 
+    font-family: "Material Icons";
+    font-size: x-large;
+    vertical-align: inherit;
+}
+
 .game-plan-pairings {
     display: flex;
 }

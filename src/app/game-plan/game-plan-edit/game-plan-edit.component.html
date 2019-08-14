@@ -8,11 +8,14 @@
     <button type="button"
         mat-flat-button
         color="warn"
-        *ngIf="isEditMode()"
+        *ngIf="isEditMode"
         (click)="confirmDelete()">Delete</button>
 </form>
 <div *ngIf="form.submitted && gameDescription.errors" class="app-validation-alert">
     {{gameDescriptionFirstError}}
+</div>
+<div *ngIf="displayWarning" class="game-plan-warning">
+    The depth chart saved for this game plan does not match your current depth chart
 </div>
     
 <div cdkDropListGroup class="game-plan-pairings">
