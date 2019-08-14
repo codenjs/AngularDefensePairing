@@ -4,5 +4,11 @@
         title="Pairings"
         instructions="">
     </app-list-header>
-    <app-depth-chart-list [items]="items" [dragDropDisabled]="true" emptyMessage="Enter at least 2 players"></app-depth-chart-list>
+    <ul class="app-list">
+        <app-list-item-empty [items]="items" message="Enter at least 2 players"></app-list-item-empty>
+        <li *ngFor="let item of items"
+            class="app-list-item">
+            {{item.name}}
+        </li>
+    </ul>
 </div>
