@@ -92,3 +92,38 @@ describe('arraysEqual given arrays of custom objects', () => {
     expect(result).toBe(false);
   });
 });
+
+describe('clearArray', () => {
+  const clearAndAssert = (array) => {
+    ArrayUtils.clearArray(array);
+    expect(array.length).toBe(0);
+  };
+
+  it('should do nothing when the array is empty', () => {
+    clearAndAssert([]);
+  });
+
+  it('should remove the item when the array contains one string', () => {
+    clearAndAssert(['aaa']);
+  });
+
+  it('should remove all items when the array contains multiple strings', () => {
+    clearAndAssert(['aaa', 'bbb']);
+  });
+
+  it('should remove the item when the array contains one number', () => {
+    clearAndAssert([1]);
+  });
+
+  it('should remove all items when the array contains multiple numbers', () => {
+    clearAndAssert([1, 2]);
+  });
+
+  it('should remove the item when the array contains one object', () => {
+    clearAndAssert([{ name: 'aaa' }]);
+  });
+
+  it('should remove all items when the array contains multiple objects', () => {
+    clearAndAssert([{ name: 'aaa' }, { name: 'bbb' }]);
+  });
+});

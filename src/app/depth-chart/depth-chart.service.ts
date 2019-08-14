@@ -4,6 +4,7 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { DepthChartMoveEventArgs } from './depth-chart-move-event-args';
 import { UserDataService } from '../shared/user-data.service';
 import { ListItem } from '../shared/list-item';
+import { ArrayUtils } from '../shared/array-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,7 @@ export class DepthChartService {
   }
 
   updatePairings(): void {
-    this.clearArray(this.pairings);
+    ArrayUtils.clearArray(this.pairings);
     this.generatePairings(this.players).forEach(p => {
       this.pairings.push(p);
     });
@@ -69,12 +70,8 @@ export class DepthChartService {
   }
 
   clearAll(): void {
-    this.clearArray(this.players);
-    this.clearArray(this.pairings);
+    ArrayUtils.clearArray(this.players);
+    ArrayUtils.clearArray(this.pairings);
     this.saveData();
-  }
-
-  private clearArray(array: ListItem[]): void {
-    array.splice(0, array.length);
   }
 }
