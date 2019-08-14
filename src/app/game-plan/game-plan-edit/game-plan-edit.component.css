@@ -10,6 +10,10 @@ button {
     display: flex;
 }
 
+.game-plan-pairings > *:not(:first-child) {
+    margin-left: 10px;
+}
+
 .game-plan-pairings-header {
     font-weight: bold;
     margin: 5px 0;
@@ -17,7 +21,6 @@ button {
 
 .game-plan-periods {
     border-spacing: 0;
-    margin-left: 15px;
 }
 
 .pairing-count-icon {

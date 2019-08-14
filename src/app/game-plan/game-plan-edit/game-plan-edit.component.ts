@@ -16,6 +16,7 @@ import { DuplicateItemValidator, ValidatorExtensions, WhitespaceValidator } from
 })
 export class GamePlanEditComponent implements OnInit {
   id: number;
+  players: ListItem[];
   pairings: ListItem[];
   pairingCounter = new UniqueCounter<ListItem, number>();
   gameForm: FormGroup;
@@ -45,7 +46,8 @@ export class GamePlanEditComponent implements OnInit {
       this.gamePlanService.currentGame.players = this.depthChartService.getPlayers();
     }
 
-    this.pairings = this.depthChartService.generatePairings(this.gamePlanService.currentGame.players);
+    this.players = this.gamePlanService.currentGame.players;
+    this.pairings = this.depthChartService.generatePairings(this.players);
 
     this.pairings.forEach((element, i) => {
       element.value = i;

@@ -49,7 +49,10 @@ export class DepthChartService {
   }
 
   updatePairings(): void {
-    this.pairings = this.generatePairings(this.players);
+    this.clearArray(this.pairings);
+    this.generatePairings(this.players).forEach(p => {
+      this.pairings.push(p);
+    });
   }
 
   generatePairings(players: ListItem[]): ListItem[] {
