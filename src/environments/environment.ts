@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  logUrl: 'http://localhost:4547/Service.svc/ParityLog'
 };
 
 /*

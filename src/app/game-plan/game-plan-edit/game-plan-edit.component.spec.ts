@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { GamePlanEditComponent } from './game-plan-edit.component';
 import { GamePlanModule } from '../game-plan.module';
@@ -27,6 +28,7 @@ describe('GamePlanEditComponent', () => {
       imports: [
         ReactiveFormsModule,
         RouterTestingModule,
+        HttpClientTestingModule,
         GamePlanModule,
         DepthChartModule
       ],

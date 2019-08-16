@@ -1,10 +1,20 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DepthChartService } from './depth-chart.service';
 import { ListItem } from '../shared/list-item';
 
+const configureTestingModule = () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ]
+    })
+    .compileComponents();
+  });
+};
+
 describe('DepthChartService updatePairings', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  configureTestingModule();
 
   const generateAndAssert = (input: ListItem[], expectedOutput: ListItem[]) => {
     const service: DepthChartService = TestBed.get(DepthChartService);
@@ -63,7 +73,7 @@ describe('DepthChartService updatePairings', () => {
 });
 
 describe('DepthChartService clearAll', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  configureTestingModule();
 
   it('should remove all players and pairings', () => {
     const service: DepthChartService = TestBed.get(DepthChartService);
@@ -80,7 +90,7 @@ describe('DepthChartService clearAll', () => {
 });
 
 describe('DepthChartService movePlayer', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  configureTestingModule();
 
   it('should switch source item with destination item', () => {
     const service: DepthChartService = TestBed.get(DepthChartService);
@@ -98,7 +108,7 @@ describe('DepthChartService movePlayer', () => {
 });
 
 describe('DepthChartService deletePlayer', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  configureTestingModule();
 
   it('should remove the player at specified index', () => {
     const service: DepthChartService = TestBed.get(DepthChartService);

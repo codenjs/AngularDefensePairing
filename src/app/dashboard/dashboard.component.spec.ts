@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DashboardComponent } from './dashboard.component';
 import { DepthChartModule } from '../depth-chart/depth-chart.module';
@@ -12,6 +13,7 @@ describe('DashboardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
       imports: [
+        HttpClientTestingModule,
         DepthChartModule,
         GamePlanModule
       ]

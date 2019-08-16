@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DepthChartPlayersComponent } from './depth-chart-players.component';
 import { DepthChartModule } from '../depth-chart.module';
@@ -9,7 +10,7 @@ describe('DepthChartPlayersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ DepthChartModule ]
+      imports: [ HttpClientTestingModule, DepthChartModule ]
     })
     .compileComponents();
   }));

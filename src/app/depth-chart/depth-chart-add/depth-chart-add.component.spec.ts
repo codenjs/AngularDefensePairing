@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormControl } from '@angular/forms';
 
 import { DepthChartAddComponent } from './depth-chart-add.component';
@@ -12,7 +13,11 @@ describe('DepthChartAddComponent invalidCharacterValidator', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ DepthChartModule, SharedModule ]
+      imports: [
+        HttpClientTestingModule,
+        DepthChartModule,
+        SharedModule
+      ]
     })
     .compileComponents();
   }));
