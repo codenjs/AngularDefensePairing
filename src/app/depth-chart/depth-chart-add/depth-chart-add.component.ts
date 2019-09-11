@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { DepthChartService } from '../depth-chart.service';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { DuplicateItemValidator, ValidatorExtensions } from 'src/app/shared/validators';
+import { ListItem } from 'src/app/shared/list-item';
 
 @Component({
   selector: 'app-depth-chart-add',
@@ -12,6 +13,7 @@ import { DuplicateItemValidator, ValidatorExtensions } from 'src/app/shared/vali
 export class DepthChartAddComponent implements OnInit {
 
   addForm: FormGroup;
+  @Input() items: ListItem[] = [];
   @ViewChild('newNameInput', {static: false}) newNameElement: ElementRef;
 
   constructor(

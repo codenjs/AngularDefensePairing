@@ -10,5 +10,7 @@
         (reordered)="onReordered($event)"
         emptyMessage="Enter players below">
     </app-depth-chart-list>
-    <app-depth-chart-add></app-depth-chart-add>
+    <app-depth-chart-add
+        [items]="items">
+    </app-depth-chart-add>
 </div>

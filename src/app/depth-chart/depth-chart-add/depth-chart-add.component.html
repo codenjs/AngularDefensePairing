@@ -1,4 +1,5 @@
-<form [formGroup]="addForm" (ngSubmit)="onSubmit()" fxLayout="row" fxLayoutGap="5px">
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()"
+    fxLayout="row" fxLayoutGap="5px" class="depth-chart-add-container">
     <input type="text"
         formControlName="newName"
         #newNameInput
@@ -11,7 +12,7 @@
 <div *ngIf="newName.errors" class="app-validation-alert">
     {{newNameFirstError}}
 </div>
-<div class="depth-chart-clear-container">
+<div *ngIf="items.length > 0" class="depth-chart-clear-container">
     Clear the Depth Chart<br>
     <button mat-flat-button
         color="warn"
