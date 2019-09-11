@@ -21,17 +21,24 @@
 <div *ngIf="displayWarning" class="game-plan-warning">
     The depth chart saved for this game plan does not match your current depth chart
 </div>
-    
+
+<div fxLayout="row">
+    <div class="game-plan-pairings-header">{{isEditMode ? 'Saved Depth Chart' : 'Depth Chart'}} ({{players.length}})</div>
+    <button type="button"
+        mat-stroked-button
+        (click)="toggleDepthChart()"
+        class="app-small-button game-plan-toggle-button">{{isDepthChartVisible ? 'Hide' : 'Show'}}</button>
+</div>
+
 <div cdkDropListGroup class="game-plan-pairings">
     <div>
-        <div class="game-plan-pairings-header">Depth Chart ({{players.length}})</div>
-        <div *ngFor="let item of players"
-            class="app-list-item">
-            {{item.name}}
+        <div *ngIf="isDepthChartVisible">
+            <div *ngFor="let item of players"
+                class="app-list-item">
+                {{item.name}}
+            </div>
         </div>
-    </div>
 
-    <div>
         <div class="game-plan-pairings-header">Pairings ({{pairings.length}})</div>
         <div cdkDropList cdkDropListSortingDisabled>
             <div *ngFor="let item of pairings"

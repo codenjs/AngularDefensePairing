@@ -22,8 +22,8 @@ input[type="text"] {
     padding: 3px 5px;
 }
 
-/* override mat-flat-button default styles */
-.app-small-button.mat-flat-button {
+/* override material button default styles */
+.app-small-button.mat-flat-button, .app-small-button.mat-stroked-button {
     min-width: unset;
     line-height: unset;
     padding: 5px;
