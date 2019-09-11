@@ -1,3 +1,11 @@
 .dashboard-column {
     padding: 2px;
 }
+
+.dashboard-column-xs {
+    min-width: 50%;
+}
+
+.dashboard-column-gt-xs {
+    min-width: 200px;
+}
