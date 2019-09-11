@@ -7,8 +7,6 @@
         cdkDrag
         (cdkDragStarted)="isDragActive=true"
         (cdkDragReleased)="isDragActive=false"
-        (mouseenter)="hoverItemIndex=i"
-        (mouseleave)="hoverItemIndex=-1"
         class="app-list-item">
         {{item.name}}
         <mat-icon

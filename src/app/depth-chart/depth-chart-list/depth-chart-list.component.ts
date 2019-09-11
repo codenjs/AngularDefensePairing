@@ -15,7 +15,6 @@ export class DepthChartListComponent implements OnInit {
   @Output() reordered = new EventEmitter<DepthChartMoveEventArgs>();
   @Output() deleted = new EventEmitter<number>();
   isDragActive: boolean;
-  hoverItemIndex: number;
 
   constructor() {
   }
@@ -32,10 +31,7 @@ export class DepthChartListComponent implements OnInit {
   }
 
   isDeleteClickable(currentIndex: number): boolean {
-    // Delete is clickable for the item currently being hovered,
-    // but not when any item is being dragged or the list is disabled
-    return this.hoverItemIndex === currentIndex &&
-      !this.isDragActive &&
-      !this.dragDropDisabled;
+    // Delete is not clickable when any item is being dragged or the list is disabled
+    return !this.isDragActive && !this.dragDropDisabled;
   }
 }
