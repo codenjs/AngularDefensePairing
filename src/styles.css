@@ -10,6 +10,7 @@ body {
 }
 
 h3 {
+    margin-top: 0px;
     margin-bottom: 5px;
 }
 
@@ -71,7 +72,7 @@ input[type="text"] {
 
 .app-list-item-empty {
     justify-content: center;
-    padding: 20px 0px;
+    padding: 20px 5px;
 }
 
 .app-list-item-clickable:hover {

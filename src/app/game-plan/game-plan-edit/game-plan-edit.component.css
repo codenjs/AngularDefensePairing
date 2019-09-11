@@ -1,9 +1,6 @@
-button {
-    margin-left: 5px;
-}
-
-.game-plan-cancel-button {
-    margin-left: 25px;
+.game-plan-buttons-xs {
+    width: 100%;
+    margin: 5px;
 }
 
 .game-plan-warning {

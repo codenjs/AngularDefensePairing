@@ -1,15 +1,19 @@
-<form [formGroup]="gameForm" #form="ngForm" (ngSubmit)="onSubmit()">
-    Description: <input type="text" formControlName="gameDescription" />
-    <button mat-flat-button color="primary">Save</button>
-    <button type="button"
-        mat-stroked-button
-        routerLink="/"
-        class="game-plan-cancel-button">Cancel</button>
-    <button type="button"
-        mat-flat-button
-        color="warn"
-        *ngIf="isEditMode"
-        (click)="confirmDelete()">Delete</button>
+<form [formGroup]="gameForm" #form="ngForm" (ngSubmit)="onSubmit()"
+    fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px grid">
+    <div>
+        Description: <input type="text" formControlName="gameDescription" />
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px" ngClass.xs="game-plan-buttons-xs">
+        <button mat-flat-button color="primary">Save</button>
+        <button type="button"
+            mat-stroked-button
+            routerLink="/">Cancel</button>
+        <button type="button"
+            mat-flat-button
+            color="warn"
+            *ngIf="isEditMode"
+            (click)="confirmDelete()">Delete</button>
+    </div>
 </form>
 <div *ngIf="form.submitted && gameDescription.errors" class="app-validation-alert">
     {{gameDescriptionFirstError}}

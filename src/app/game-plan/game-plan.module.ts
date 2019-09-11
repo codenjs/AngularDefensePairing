@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
@@ -20,6 +21,7 @@ import { GamePlanPeriodComponent } from './game-plan-period/game-plan-period.com
     AppRoutingModule,
     ReactiveFormsModule,
     DragDropModule,
+    FlexLayoutModule,
     SharedModule
   ],
   exports: [
