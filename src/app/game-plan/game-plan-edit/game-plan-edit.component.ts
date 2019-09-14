@@ -63,7 +63,8 @@ export class GamePlanEditComponent implements OnInit {
         ValidatorExtensions.addCustomMessage(Validators.required, 'Description is required'),
         WhitespaceValidator.create('Description is empty'),
         DuplicateItemValidator.create(() => this.duplicateItemLookup())
-      ]]
+      ]],
+      notes: [this.gamePlanService.currentGame.notes]
     }, {
       updateOn: 'submit'
     });
@@ -77,6 +78,7 @@ export class GamePlanEditComponent implements OnInit {
     // Currently, only 1 error can occur at a time
     return ValidatorExtensions.firstError(this.gameDescription.errors);
   }
+  get notes() { return this.gameForm.get('notes'); }
 
   duplicateItemLookup(): string[] {
     return this.gamePlanService.games
@@ -103,7 +105,8 @@ export class GamePlanEditComponent implements OnInit {
       return;
     }
 
-    this.gamePlanService.currentGame.description = this.gameForm.get('gameDescription').value.trim();
+    this.gamePlanService.currentGame.description = this.gameDescription.value.trim();
+    this.gamePlanService.currentGame.notes = this.notes.value;
     this.gamePlanService.saveGamePlan(this.id);
     this.router.navigate(['']);
   }

@@ -1,7 +1,21 @@
 <form [formGroup]="gameForm" #form="ngForm" (ngSubmit)="onSubmit()"
-    fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px grid">
+    fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px grid">
     <div>
-        Description: <input type="text" formControlName="gameDescription" />
+        <table>
+            <tr>
+                <td>Description:</td>
+                <td><input type="text" formControlName="gameDescription" /></td>
+            </tr>
+            <tr *ngIf="form.submitted && gameDescription.errors">
+                <td colspan="2" class="app-validation-alert">
+                    {{gameDescriptionFirstError}}
+                </td>
+            </tr>
+            <tr>
+                <td>Notes:</td>
+                <td><input type="text" formControlName="notes" /></td>
+            </tr>
+        </table>
     </div>
     <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px" ngClass.xs="game-plan-buttons-xs">
         <button mat-flat-button color="primary">Save</button>
@@ -15,9 +29,6 @@
             (click)="confirmDelete()">Delete</button>
     </div>
 </form>
-<div *ngIf="form.submitted && gameDescription.errors" class="app-validation-alert">
-    {{gameDescriptionFirstError}}
-</div>
 <div *ngIf="displayWarning" class="game-plan-warning">
     The depth chart saved for this game plan does not match your current depth chart
 </div>
