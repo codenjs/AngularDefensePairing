@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatDialogModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatExpansionModule, MatIconModule } from '@angular/material';
 
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ListHeaderComponent } from './list-header/list-header.component';
@@ -11,6 +11,7 @@ import { ListItemEmptyComponent } from './list-item-empty/list-item-empty.compon
     CommonModule,
     MatButtonModule,
     MatDialogModule,
+    MatExpansionModule,
     MatIconModule
   ],
   declarations: [
@@ -20,6 +21,7 @@ import { ListItemEmptyComponent } from './list-item-empty/list-item-empty.compon
   ],
   exports: [
     MatButtonModule,
+    MatExpansionModule,
     MatIconModule,
     ConfirmDialogComponent,
     ListHeaderComponent,

@@ -1,55 +1,50 @@
-<form [formGroup]="gameForm" #form="ngForm" (ngSubmit)="onSubmit()"
-    fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px grid">
-    <div>
-        <table>
-            <tr>
-                <td>Description:</td>
-                <td><input type="text" formControlName="gameDescription" /></td>
-            </tr>
-            <tr *ngIf="form.submitted && gameDescription.errors">
-                <td colspan="2" class="app-validation-alert">
-                    {{gameDescriptionFirstError}}
-                </td>
-            </tr>
-            <tr>
-                <td>Notes:</td>
-                <td><input type="text" formControlName="notes" /></td>
-            </tr>
-        </table>
+<form [formGroup]="gameForm" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px grid">
+        <div>
+            Description: <input type="text" formControlName="gameDescription" />
+            <div *ngIf="form.submitted && gameDescription.errors" class="app-validation-alert">
+                {{gameDescriptionFirstError}}
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px" ngClass.xs="game-plan-buttons-xs">
+            <button mat-flat-button color="primary">Save</button>
+            <button type="button"
+                mat-stroked-button
+                routerLink="/">Cancel</button>
+            <button type="button"
+                mat-flat-button
+                color="warn"
+                *ngIf="isEditMode"
+                (click)="confirmDelete()">Delete</button>
+        </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5px" ngClass.xs="game-plan-buttons-xs">
-        <button mat-flat-button color="primary">Save</button>
-        <button type="button"
-            mat-stroked-button
-            routerLink="/">Cancel</button>
-        <button type="button"
-            mat-flat-button
-            color="warn"
-            *ngIf="isEditMode"
-            (click)="confirmDelete()">Delete</button>
-    </div>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Notes</mat-panel-title>
+        </mat-expansion-panel-header>
+        <textarea formControlName="notes" rows="10"></textarea>
+    </mat-expansion-panel>
 </form>
-<div *ngIf="displayWarning" class="game-plan-warning">
-    The depth chart saved for this game plan does not match your current depth chart
+
+<div *ngIf="displayWarning" class="game-plan-warning mat-expansion-panel">
+    The saved depth chart in this game plan does not match your current depth chart
 </div>
 
-<div fxLayout="row">
-    <div class="game-plan-pairings-header">{{isEditMode ? 'Saved Depth Chart' : 'Depth Chart'}} ({{players.length}})</div>
-    <button type="button"
-        mat-stroked-button
-        (click)="toggleDepthChart()"
-        class="app-small-button game-plan-toggle-button">{{isDepthChartVisible ? 'Hide' : 'Show'}}</button>
-</div>
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title>{{isEditMode ? 'Saved Depth Chart' : 'Depth Chart'}} ({{players.length}})</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="depth-chart-container">
+        <div *ngFor="let item of players"
+            class="app-list-item">
+            {{item.name}}
+        </div>
+    </div>
+</mat-expansion-panel>
 
 <div cdkDropListGroup class="game-plan-pairings">
     <div>
-        <div *ngIf="isDepthChartVisible">
-            <div *ngFor="let item of players"
-                class="app-list-item">
-                {{item.name}}
-            </div>
-        </div>
-
         <div class="game-plan-pairings-header">Pairings ({{pairings.length}})</div>
         <div cdkDropList cdkDropListSortingDisabled>
             <div *ngFor="let item of pairings"

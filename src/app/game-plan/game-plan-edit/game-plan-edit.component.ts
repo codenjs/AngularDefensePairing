@@ -22,7 +22,6 @@ export class GamePlanEditComponent implements OnInit {
   pairings: ListItem[];
   pairingCounter = new UniqueCounter<ListItem, number>();
   gameForm: FormGroup;
-  isDepthChartVisible: boolean;
 
   constructor(
     private router: Router,
@@ -90,10 +89,6 @@ export class GamePlanEditComponent implements OnInit {
     this.pairingCounter.setCounts(
       this.gamePlanService.getAllSelectedPairings(),
       p => p.value);
-  }
-
-  toggleDepthChart(): void {
-    this.isDepthChartVisible = !this.isDepthChartVisible;
   }
 
   onPeriodUpdated() {
