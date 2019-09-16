@@ -31,12 +31,13 @@
         </mat-expansion-panel>
 
         <div *ngIf="displayWarning" class="game-plan-warning mat-expansion-panel">
-            The saved depth chart in this game plan does not match your current depth chart
+            Saved depth chart does not match your current depth chart
         </div>
 
         <mat-expansion-panel
             (opened)="depthChartPanelPreview.toggle()"
-            (closed)="depthChartPanelPreview.toggle()">
+            (closed)="depthChartPanelPreview.toggle()"
+            [ngClass]="{ 'mat-expansion-panel-warning': displayWarning }">
             <mat-expansion-panel-header>
                 <mat-panel-title>{{isEditMode ? 'Saved Depth Chart' : 'Depth Chart'}} ({{players.length}})</mat-panel-title>
                 <mat-panel-description>{{depthChartPanelPreview.previewText()}}</mat-panel-description>
