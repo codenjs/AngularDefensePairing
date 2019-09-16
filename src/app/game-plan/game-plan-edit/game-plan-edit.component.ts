@@ -7,6 +7,7 @@ import { DepthChartService } from 'src/app/depth-chart/depth-chart.service';
 import { ListItem } from 'src/app/shared/list-item';
 import { ArrayUtils } from 'src/app/shared/array-utils';
 import { UniqueCounter } from 'src/app/shared/unique-counter';
+import { ExpansionPanelPreview } from 'src/app/shared/expansion-panel-preview';
 import { ConfirmDialogService } from 'src/app/shared/confirm-dialog/confirm-dialog.service';
 import { DuplicateItemValidator, ValidatorExtensions, WhitespaceValidator } from 'src/app/shared/validators';
 
@@ -22,6 +23,8 @@ export class GamePlanEditComponent implements OnInit {
   pairings: ListItem[];
   pairingCounter = new UniqueCounter<ListItem, number>();
   gameForm: FormGroup;
+  notesPanelPreview = new ExpansionPanelPreview(() => this.notes.value);
+  depthChartPanelPreview = new ExpansionPanelPreview(() => this.players.map(i => i.name).join(', '));
 
   constructor(
     private router: Router,
@@ -63,7 +66,7 @@ export class GamePlanEditComponent implements OnInit {
         WhitespaceValidator.create('Description is empty'),
         DuplicateItemValidator.create(() => this.duplicateItemLookup())
       ]],
-      notes: [this.gamePlanService.currentGame.notes]
+      notes: [this.gamePlanService.currentGame.notes, { updateOn: 'blur' }]
     }, {
       updateOn: 'submit'
     });
