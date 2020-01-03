@@ -17,11 +17,11 @@ export class AppPage {
   }
 
   newName() {
-    return $('app-depth-chart-players input') as ElementFinder;
+    return $('.depth-chart-add-container input') as ElementFinder;
   }
 
   addButton() {
-    return $('app-depth-chart-players button.depth-chart-add-button') as ElementFinder;
+    return $('.depth-chart-add-container button') as ElementFinder;
   }
 
   errorMessageText() {
